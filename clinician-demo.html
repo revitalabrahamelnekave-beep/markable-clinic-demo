@@ -64,6 +64,9 @@ h1.t{font-size:23px;font-weight:800;color:var(--navy);letter-spacing:-.02em}
 .pbadge.ok{background:#fbeaf4;color:var(--pk-deep)}
 .pbadge.wait{background:#f0f0f3;color:#999}
 .popen{font-size:13px;font-weight:700;color:var(--pk);white-space:nowrap;display:flex;align-items:center;gap:5px}
+.reminder{font-size:12.5px;font-weight:700;color:var(--pk);background:#fff;border:1.5px solid var(--pk);border-radius:9px;padding:7px 13px;cursor:pointer;white-space:nowrap;font-family:var(--font);transition:.12s}
+.reminder:hover{background:var(--wash)}
+.reminder:disabled{cursor:default}
 
 /* dashboard (shared with partner page) */
 .crumb{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--muted);margin-bottom:14px;cursor:pointer}
@@ -163,7 +166,7 @@ h1.t{font-size:23px;font-weight:800;color:var(--navy);letter-spacing:-.02em}
               <div class="pav g">NP</div>
               <div class="pinfo"><div class="pn">Nina P.</div><div class="pm">Age 43 &middot; 3:30 PM &middot; New patient</div></div>
               <span class="pbadge wait">Awaiting mapping</span>
-              <span style="width:96px"></span>
+              <button class="reminder" onclick="sendReminder(this)">Send reminder</button>
             </div>
             <div class="prow ready" onclick="go(1)">
               <div class="pav">DW</div>
@@ -218,25 +221,25 @@ h1.t{font-size:23px;font-weight:800;color:var(--navy);letter-spacing:-.02em}
         <div class="scr" data-i="2">
           <div class="crumb" onclick="go(1)"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg> Maya R. profile</div>
           <div class="eyebrow">Structured visit summary</div>
-          <h1 class="t">Review, then add to the chart.</h1>
-          <p class="sub" style="margin:6px 0 16px">MARKABLE drafts the summary from her profile. You review and edit before anything enters the record. The clinical note stays yours.</p>
+          <h1 class="t">Review, then copy to the record.</h1>
+          <p class="sub" style="margin:6px 0 16px">MARKABLE drafts the summary from her profile. You review and edit it, then copy it into your own medical record. No integration required, and the clinical note stays yours.</p>
           <div class="vs-card">
             <div class="eh">Draft summary &middot; Maya R. &middot; Visit 3</div>
             <p><b>Current therapy:</b> Transdermal estradiol 0.05 mg/day plus micronized progesterone 200 mg, started Dec 20. Adherence: 2 missed doses this cycle.</p>
             <p><b>Reported symptoms:</b> Persistent hot flashes (8/10), night sweats, and worsening sleep onset.</p>
             <p><b>Measured signals (MARKABLE):</b> Cognitive, reaction time improved 0.18s and short-term recall up 11 percent since last visit. Visual signals, skin hydration up 14 percent, periorbital fine lines down 8 percent, facial redness down 11 percent.</p>
             <p><b>For discussion:</b> Mixed picture. Cognitive and dermal signals improving, vasomotor and sleep clusters still burdened. Adherence support and a dose conversation may be worth raising.</p>
-            <div class="vs-note">This is a wellness summary for visit preparation, not a diagnosis or a treatment recommendation. You review and approve before it enters the chart.</div>
+            <div class="vs-note">This is a wellness summary for visit preparation, not a diagnosis or a treatment recommendation. You review it, then copy it into the record.</div>
           </div>
-          <div class="foot"><button class="btn btn-pk" onclick="go(3)">Add to Maya's chart</button><button class="btn btn-ghost" onclick="go(1)">Back to profile</button></div>
+          <div class="foot"><button class="btn btn-pk" onclick="go(3)">Copy for the medical record</button><button class="btn btn-ghost" onclick="go(1)">Back to profile</button></div>
         </div>
 
         <!-- SCREEN 3: CONFIRMATION -->
         <div class="scr" data-i="3">
           <div class="done">
             <div class="ic"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#1A7A3B" stroke-width="2"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg></div>
-            <h1 class="t">Added to Maya's chart.</h1>
-            <p class="sub" style="margin:10px 0 4px;max-width:460px">You are ready for the 2:30 visit. Maya arrives already mapped, so the appointment opens on her care, not on catching up.</p>
+            <h1 class="t">Copied for the record.</h1>
+            <p class="sub" style="margin:10px 0 4px;max-width:460px">Paste it into Maya's record whenever you like. You are ready for the 2:30 visit: Maya arrives already mapped, so the appointment opens on her care.</p>
             <div class="foot" style="justify-content:center"><button class="btn btn-pk" onclick="go(0)">Back to today's visits</button><a class="btn btn-ghost" href="index.html">Demo home</a></div>
           </div>
         </div>
@@ -267,6 +270,7 @@ function go(n){
 }
 function next(){go(cur+1);}
 function prev(){go(cur-1);}
+function sendReminder(b){b.textContent='Reminder sent';b.style.color='#1A7A3B';b.style.borderColor='#1A7A3B';b.style.background='#f0f9f3';b.disabled=true;b.style.cursor='default';}
 document.getElementById('jump').innerHTML=SCREENS.map(function(s,i){return '<div class="j" data-j="'+i+'" onclick="go('+i+')">'+(i+1)+'. '+s.l+'</div>';}).join('');
 go(0);
 document.addEventListener('keydown',function(e){if(/INPUT|TEXTAREA|SELECT/.test((e.target&&e.target.tagName)||''))return;if(e.key==='ArrowRight')next();if(e.key==='ArrowLeft')prev();});
