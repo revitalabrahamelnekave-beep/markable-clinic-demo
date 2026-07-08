@@ -153,6 +153,41 @@ footer .disc{font-size:12.5px;color:#9a9aa6;max-width:560px;line-height:1.6}
   .hero-visual{order:-1}
   h2{font-size:27px}
 }
+/* live clinician dashboard */
+.clinfeats{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-bottom:30px}
+.clinfeats .feat{margin-bottom:0}
+.dash{background:#fff;padding:20px 22px}
+.dash-top{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;border-bottom:2px solid var(--navy);padding-bottom:11px;margin-bottom:13px}
+.dash-top .dt-l{display:flex;align-items:center;gap:10px}
+.dash-top .dt-l img{height:17px}
+.dash-top .dt-l span{font-size:14px;font-weight:700;color:var(--pk)}
+.dash-top .dt-r{text-align:right}
+.dash-top .dt-r .pn{font-size:14px;font-weight:800;color:var(--navy)}
+.dash-top .dt-r .pv{font-size:11px;color:var(--muted)}
+.dash-band{background:#eef4ff;border-radius:10px;padding:11px 14px;display:flex;justify-content:space-between;gap:18px;margin-bottom:16px}
+.dash-band .lbl{font-size:9px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#2E6BE6;margin-bottom:2px}
+.dash-band .v{font-size:12.5px;color:var(--navy);font-weight:600;line-height:1.4}
+.dash-band .s{font-size:11px;color:var(--muted)}
+.dash-cols{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-bottom:16px}
+.dsec{font-size:9.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--navy);border-bottom:1px solid var(--line);padding-bottom:5px;margin-bottom:9px}
+.dsub{font-size:9px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--pk);margin:12px 0 5px}
+.dchips{display:flex;gap:6px;flex-wrap:wrap}
+.dchip{font-size:11px;font-weight:600;padding:5px 11px;border-radius:8px;background:var(--navy);color:#fff}
+.dcall{background:#fdf0f5;border-left:3px solid var(--pk);border-radius:0 8px 8px 0;padding:8px 12px;font-size:12px;font-weight:700;color:var(--pk-deep);margin-bottom:10px}
+.drow{display:flex;align-items:center;justify-content:space-between;padding:6px 0;border-bottom:1px solid #f4f4f7}
+.drow .dn{font-size:12.5px;color:#333;font-weight:600}
+.drow .rt{display:flex;align-items:center;gap:9px}
+.drow .dbar{width:78px;height:6px;border-radius:4px;background:#eee;overflow:hidden;display:inline-block}
+.drow .dbar i{display:block;height:100%;background:#B8860B;border-radius:4px}
+.drow .dsc{font-size:12.5px;font-weight:800;color:#333;min-width:34px;text-align:right}
+.dtrend{display:flex;align-items:center;justify-content:space-between;padding:7px 0;border-bottom:1px solid #f4f4f7}
+.dtrend .tn{font-size:12.5px;color:#333;font-weight:600}
+.dtrend .tv{font-size:12.5px;font-weight:800}
+.dexport{border:1.5px dashed var(--pk);border-radius:12px;padding:13px 16px;background:#fdf7fb}
+.dexport .eh{font-size:9.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--pk);margin-bottom:7px}
+.dexport p{font-size:12px;color:#3c3c48;line-height:1.55;margin:0}
+.dexport p b{color:var(--navy)}
+@media(max-width:860px){.clinfeats{grid-template-columns:1fr;gap:18px}.dash-cols{grid-template-columns:1fr;gap:14px}.dash-band{flex-direction:column;gap:8px;text-align:left}.dash-band>div{text-align:left!important}.dash-top .dt-r{text-align:right}}
 </style>
 </head>
 <body>
@@ -259,24 +294,59 @@ footer .disc{font-size:12.5px;color:#9a9aa6;max-width:560px;line-height:1.6}
       <div class="eyebrow">What your clinician sees</div>
       <h2>An objective baseline, the trend since last visit, and an intake summary ready for your workflow.</h2>
     </div>
-    <div class="split">
-      <div>
-        <div class="feat">
-          <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#D1409C" stroke-width="2"><path d="M3 12h4l3 8 4-16 3 8h4"/></svg></div>
-          <div><h3>A structured intake, before the visit</h3><p>Skin, cognition, the senses and symptoms, captured and organized so the visit opens straight on care.</p></div>
-        </div>
-        <div class="feat">
-          <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#D1409C" stroke-width="2"><path d="M4 19V5m0 14h16M8 15l3-4 3 3 4-6"/></svg></div>
-          <div><h3>Changes since last visit</h3><p>Each re-map shows which way her signals are trending, cognitive and physiological, so a follow-up starts from what has changed.</p></div>
-        </div>
-        <div class="feat">
-          <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#D1409C" stroke-width="2"><path d="M9 12l2 2 4-4m1-6H8a2 2 0 00-2 2v14a2 2 0 002 2h8a2 2 0 002-2V6a2 2 0 00-2-2z"/></svg></div>
-          <div><h3>One-click intake summary</h3><p>A structured visit-prep summary your clinician reviews and can drop into the chart. The clinical note stays yours.</p></div>
-        </div>
+    <div class="clinfeats">
+      <div class="feat">
+        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#D1409C" stroke-width="2"><path d="M3 12h4l3 8 4-16 3 8h4"/></svg></div>
+        <div><h3>A structured intake, before the visit</h3><p>Skin, cognition, the senses and symptoms, captured and organized so the visit opens straight on care.</p></div>
       </div>
-      <div class="dash-frame">
-        <div class="bar"><i></i><i></i><i></i></div>
-        <img src="assets/clinician-dashboard.png" alt="Clinician intake and tracking profile">
+      <div class="feat">
+        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#D1409C" stroke-width="2"><path d="M4 19V5m0 14h16M8 15l3-4 3 3 4-6"/></svg></div>
+        <div><h3>Changes since last visit</h3><p>Each re-map shows which way her signals are trending, cognitive and physiological, so a follow-up starts from what has changed.</p></div>
+      </div>
+      <div class="feat">
+        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#D1409C" stroke-width="2"><path d="M9 12l2 2 4-4m1-6H8a2 2 0 00-2 2v14a2 2 0 002 2h8a2 2 0 002-2V6a2 2 0 00-2-2z"/></svg></div>
+        <div><h3>One-click intake summary</h3><p>A structured visit-prep summary your clinician reviews and can drop into the chart. The clinical note stays yours.</p></div>
+      </div>
+    </div>
+    <div class="dash-frame">
+      <div class="bar"><i></i><i></i><i></i></div>
+      <div class="dash">
+        <div class="dash-top">
+          <div class="dt-l"><img src="assets/markable-logo.png" alt="MARKABLE"><span>Intake &amp; Tracking Profile</span></div>
+          <div class="dt-r"><div class="pn">Patient: Maya R. <span style="font-weight:500;color:#888">&middot; Age 45</span></div><div class="pv">Visit 3 &middot; prepared Feb 15, 2026</div></div>
+        </div>
+        <div class="dash-band">
+          <div><div class="lbl">Current therapy (patient-reported)</div><div class="v">Transdermal estradiol 0.05 mg/day &middot; Micronized progesterone 200 mg</div><div class="s">Started Dec 20, 2025 &middot; Adherence: 2 missed doses this cycle</div></div>
+          <div style="text-align:right"><div class="lbl">Supplements</div><div class="v">Magnesium glycinate</div><div class="s">Started Jan 10</div></div>
+        </div>
+        <div class="dash-cols">
+          <div>
+            <div class="dsec">Symptom landscape</div>
+            <div class="dcall">Highest current symptom: Hot flashes (8/10)</div>
+            <div class="drow"><span class="dn">Hot flashes</span><span class="rt"><span class="dbar"><i style="width:80%"></i></span><span class="dsc">8/10</span></span></div>
+            <div class="drow"><span class="dn">Night sweats</span><span class="rt"><span class="dbar"><i style="width:70%"></i></span><span class="dsc">7/10</span></span></div>
+            <div class="drow"><span class="dn">Sleep onset difficulty</span><span class="rt"><span class="dbar"><i style="width:70%"></i></span><span class="dsc">7/10</span></span></div>
+            <div class="drow"><span class="dn">Brain fog</span><span class="rt"><span class="dbar"><i style="width:60%"></i></span><span class="dsc">6/10</span></span></div>
+            <div class="drow"><span class="dn">Stress sensitivity</span><span class="rt"><span class="dbar"><i style="width:60%"></i></span><span class="dsc">6/10</span></span></div>
+            <div class="dsub">Visit focus (patient-flagged)</div>
+            <div class="dchips"><span class="dchip">Hot flashes</span><span class="dchip">Night sweats</span><span class="dchip">Sleep worsening</span></div>
+          </div>
+          <div>
+            <div class="dsec">Changes since last visit</div>
+            <div class="dsub">Cognitive performance</div>
+            <div class="dtrend"><span class="tn">Reaction time</span><span class="tv" style="color:#1A7A3B">Improved 0.18s</span></div>
+            <div class="dtrend"><span class="tn">Short-term recall</span><span class="tv" style="color:#1A7A3B">Improved 11%</span></div>
+            <div class="dtrend"><span class="tn">Digit recall</span><span class="tv" style="color:#666">Stable</span></div>
+            <div class="dsub">Physiological signals (visual)</div>
+            <div class="dtrend"><span class="tn">Skin hydration signals</span><span class="tv" style="color:#1A7A3B">Improved 14%</span></div>
+            <div class="dtrend"><span class="tn">Periorbital fine lines</span><span class="tv" style="color:#1A7A3B">Decreased 8%</span></div>
+            <div class="dtrend"><span class="tn">Facial redness</span><span class="tv" style="color:#1A7A3B">Decreased 11%</span></div>
+          </div>
+        </div>
+        <div class="dexport">
+          <div class="eh">Structured visit summary &middot; your clinician reviews and approves before it enters the chart</div>
+          <p><b>Subjective:</b> Visit 3, on transdermal estradiol 0.05 mg plus micronized progesterone 200 mg. Primary focus: persistent hot flashes (8/10), night sweats, and worsening sleep onset. <b>Objective (MARKABLE signals):</b> cognitive reaction time improved 0.18s, recall up 11 percent; visual signals skin hydration up 14 percent, redness down 11 percent. Mixed picture: cognitive and dermal signals improving, vasomotor and sleep clusters still burdened.</p>
+        </div>
       </div>
     </div>
   </div>

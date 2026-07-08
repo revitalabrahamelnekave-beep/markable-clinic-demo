@@ -305,11 +305,11 @@ var V = {
       '<div class="cat" style="background:#fbf4e6;color:#B8860B">Moderate burden</div></div>'+
     '<p class="sub" style="text-align:center;margin-bottom:10px">Highest current signals, so your clinician can focus the visit where it matters.</p>'+
     '<div style="background:#fff;border:1px solid var(--line);border-radius:14px;padding:6px 14px">'+
-      sigrow('Cold spells',80,'#B8860B')+
+      sigrow('Hot flashes',80,'#B8860B')+
+      sigrow('Night sweats',70,'#B8860B')+
       sigrow('Sleep onset difficulty',70,'#B8860B')+
-      sigrow('Urinary discomfort',70,'#B8860B')+
-      sigrow('Stress sensitivity',70,'#B8860B')+
       sigrow('Brain fog',60,'#B8860B')+
+      sigrow('Stress sensitivity',60,'#B8860B')+
     '</div>'+
     '</div><div class="foot"><button class="btn btn-pk" onclick="next()">Next, memory and focus</button></div></div>';},
 
@@ -348,7 +348,7 @@ var V = {
     '<div class="mini">'+mdonut(62,'#D1409C',62)+'<div class="ml"><h4>Hormonal Imprint</h4><p>Facial patterns</p></div><span class="mtag" style="background:var(--wash);color:var(--pk-deep)">Moderate</span></div>'+
     '<div class="mini">'+mdonut(74,'#2E6BE6',74)+'<div class="ml"><h4>THINK</h4><p>Cognition</p></div><span class="mtag" style="background:#eaf1fe;color:#2E6BE6">Typical</span></div>'+
     '<div class="mini">'+mdonut(80,'#1A7A3B',80)+'<div class="ml"><h4>SENSE</h4><p>Vision, hearing, balance</p></div><span class="mtag" style="background:#eaf5ee;color:#1A7A3B">Strong</span></div>'+
-    '<div class="mini">'+mdonut(58,'#B8860B','&bull;')+'<div class="ml"><h4>Symptom Burden</h4><p>Cold spells, sleep, stress</p></div><span class="mtag" style="background:#fbf4e6;color:#B8860B">Moderate</span></div>'+
+    '<div class="mini">'+mdonut(58,'#B8860B','&bull;')+'<div class="ml"><h4>Symptom Burden</h4><p>Hot flashes, night sweats, sleep</p></div><span class="mtag" style="background:#fbf4e6;color:#B8860B">Moderate</span></div>'+
     '</div><div class="foot"><button class="btn btn-pk" onclick="next()">See what your clinician receives</button></div></div>';},
 
   report: function(){
@@ -362,11 +362,11 @@ var V = {
       '<div style="display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid var(--navy);padding-bottom:9px;margin-bottom:11px"><img src="assets/markable-logo.png" style="height:15px"><span style="font-size:10px;color:#999;font-weight:600">Visit 1 &middot; prepared Jun 6</span></div>'+
       '<div style="font-size:15px;font-weight:800;color:var(--navy)">'+NAME+' R. <span style="font-weight:500;color:#888;font-size:12px">&middot; Age 45</span></div>'+
       '<div style="display:flex;gap:22px;margin:11px 0 2px">'+
-        '<div><div style="font-size:9px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--pk);margin-bottom:1px">Visit focus</div><div style="font-size:12.5px;color:#333;font-weight:600">Sleep and cold spells</div></div>'+
+        '<div><div style="font-size:9px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--pk);margin-bottom:1px">Visit focus</div><div style="font-size:12.5px;color:#333;font-weight:600">Sleep and hot flashes</div></div>'+
         '<div><div style="font-size:9px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--pk);margin-bottom:1px">Current therapy</div><div style="font-size:12.5px;color:#333;font-weight:600">None reported</div></div>'+
       '</div>'+
       '<div style="font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--navy);margin:13px 0 2px;padding-top:9px;border-top:1px solid #f0f0f3">Symptom landscape</div>'+
-      rb('Cold spells',8)+rb('Sleep onset difficulty',7)+rb('Urinary discomfort',7)+rb('Stress sensitivity',7)+rb('Brain fog',6)+
+      rb('Hot flashes',8)+rb('Night sweats',7)+rb('Sleep onset difficulty',7)+rb('Brain fog',6)+rb('Stress sensitivity',6)+
       '<div style="font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--navy);margin:13px 0 7px;padding-top:9px;border-top:1px solid #f0f0f3">Wellness signals</div>'+
       '<div style="display:flex;gap:6px;flex-wrap:wrap">'+
         chip('Hormonal Imprint &middot; Moderate','#faf5f9','#B22F84')+
