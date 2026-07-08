@@ -108,7 +108,19 @@ h2.t{font-size:22px;font-weight:800;color:var(--navy);line-height:1.18;letter-sp
 .ring .val{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
 .ring .num{font-size:32px;font-weight:900;color:var(--navy);letter-spacing:-.02em}
 .ring .u{font-size:10px;color:#aaa;font-weight:600;margin-top:-2px}
-.cat{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:5px 12px;border-radius:20px;margin-top:12px}
+.cat{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:800;letter-spacing:.01em;padding:7px 15px;border-radius:20px;margin-top:12px}
+.cat::before{content:'';width:9px;height:9px;border-radius:50%}
+.cat.steady{background:#eaf5ee;color:#1A7A3B}.cat.steady::before{background:#1A7A3B}
+.cat.watch{background:#fbf4e6;color:#B8860B}.cat.watch::before{background:#B8860B}
+.stat{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:800;padding:5px 11px;border-radius:20px;white-space:nowrap}
+.stat::before{content:'';width:8px;height:8px;border-radius:50%}
+.stat.steady{background:#eaf5ee;color:#1A7A3B}.stat.steady::before{background:#1A7A3B}
+.stat.watch{background:#fbf4e6;color:#B8860B}.stat.watch::before{background:#B8860B}
+.legend{background:#fafafb;border:1px solid var(--line);border-radius:12px;padding:11px 14px;margin:12px 0 14px}
+.legend .li{display:flex;align-items:center;gap:9px;font-size:11.5px;color:#555;line-height:1.5}
+.legend .li+.li{margin-top:5px}
+.legend .d{width:10px;height:10px;border-radius:50%;flex:none}
+.legend b{color:var(--navy);font-weight:700}
 .sig{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid #f2f2f5}
 .sig:last-child{border-bottom:none}
 .sig .sn{font-size:13px;color:#333;font-weight:600}
@@ -217,6 +229,7 @@ function mdonut(pct,color,num){
 function sigrow(name,val,color){
   return '<div class="sig"><span class="sn">'+name+'</span><span class="bar"><i style="width:'+val+'%;background:'+color+'"></i></span><span class="sv" style="color:'+color+'">'+val+'</span></div>';
 }
+function statusChip(kind){return kind==='steady'?'<span class="stat steady">Looking steady</span>':'<span class="stat watch">Worth discussing</span>';}
 
 var V = {
   lock: function(){return '<div class="scr" data-i="0"><div class="lock">'+
@@ -287,14 +300,14 @@ var V = {
   imprint: function(){return '<div class="scr" data-i="7"><div class="pad">'+
     '<div class="ey">Hormonal Imprint, from your selfie</div>'+
     '<h2 class="t" style="font-size:19px">Skin patterns associated with the transition.</h2>'+
-    '<div style="text-align:center;margin:16px 0 4px">'+ring(62,'#D1409C',62)+
-      '<div class="cat" style="background:var(--wash);color:var(--pk-deep)">Moderate signal</div></div>'+
+    '<div style="text-align:center;margin:16px 0 4px">'+ring(62,'#B8860B',62)+
+      '<div class="cat watch">Worth discussing</div></div>'+
     '<p class="sub" style="text-align:center;margin-bottom:10px">Your face shows patterns that research associates with hormonal change. This is a wellness signal for awareness, not a diagnosis.</p>'+
     '<div style="background:#fff;border:1px solid var(--line);border-radius:14px;padding:6px 14px">'+
-      sigrow('Skin hydration patterns',70,'#D1409C')+
-      sigrow('Periorbital fine lines',69,'#D1409C')+
-      sigrow('Skin tone and redness',74,'#D1409C')+
-      sigrow('Texture and firmness',66,'#D1409C')+
+      sigrow('Skin hydration patterns',70,'#B8860B')+
+      sigrow('Periorbital fine lines',69,'#B8860B')+
+      sigrow('Skin tone and redness',74,'#B8860B')+
+      sigrow('Texture and firmness',66,'#B8860B')+
     '</div>'+
     '</div><div class="foot"><button class="btn btn-pk" onclick="next()">Next, your symptom map</button></div></div>';},
 
@@ -302,7 +315,7 @@ var V = {
     '<div class="ey">Symptom map</div>'+
     '<h2 class="t" style="font-size:19px">The signs you are carrying right now.</h2>'+
     '<div style="text-align:center;margin:14px 0 4px">'+ring(58,'#B8860B',58)+
-      '<div class="cat" style="background:#fbf4e6;color:#B8860B">Moderate burden</div></div>'+
+      '<div class="cat watch">Worth discussing</div></div>'+
     '<p class="sub" style="text-align:center;margin-bottom:10px">Highest current signals, so your clinician can focus the visit where it matters.</p>'+
     '<div style="background:#fff;border:1px solid var(--line);border-radius:14px;padding:6px 14px">'+
       sigrow('Hot flashes',80,'#B8860B')+
@@ -316,14 +329,14 @@ var V = {
   think: function(){return '<div class="scr" data-i="9"><div class="pad">'+
     '<div class="ey">THINK, cognition</div>'+
     '<h2 class="t" style="font-size:19px">Memory, focus and processing speed.</h2>'+
-    '<div style="text-align:center;margin:16px 0 4px">'+ring(74,'#2E6BE6',74)+
-      '<div class="cat" style="background:#eaf1fe;color:#2E6BE6">Within typical range</div></div>'+
+    '<div style="text-align:center;margin:16px 0 4px">'+ring(74,'#1A7A3B',74)+
+      '<div class="cat steady">Looking steady</div></div>'+
     '<p class="sub" style="text-align:center;margin-bottom:10px">A short, game-like check that also gives your clinician an objective baseline to track.</p>'+
     '<div style="background:#fff;border:1px solid var(--line);border-radius:14px;padding:6px 14px">'+
-      sigrow('Processing speed',76,'#2E6BE6')+
-      sigrow('Word retrieval',68,'#2E6BE6')+
-      sigrow('Working memory',75,'#2E6BE6')+
-      sigrow('Delayed recall',77,'#2E6BE6')+
+      sigrow('Processing speed',76,'#1A7A3B')+
+      sigrow('Word retrieval',68,'#1A7A3B')+
+      sigrow('Working memory',75,'#1A7A3B')+
+      sigrow('Delayed recall',77,'#1A7A3B')+
     '</div>'+
     '</div><div class="foot"><button class="btn btn-pk" onclick="next()">Next, your senses</button></div></div>';},
 
@@ -331,7 +344,7 @@ var V = {
     '<div class="ey">SENSE, the senses</div>'+
     '<h2 class="t" style="font-size:19px">Vision, hearing and balance.</h2>'+
     '<div style="text-align:center;margin:16px 0 4px">'+ring(80,'#1A7A3B',80)+
-      '<div class="cat" style="background:#eaf5ee;color:#1A7A3B">Strong</div></div>'+
+      '<div class="cat steady">Looking steady</div></div>'+
     '<p class="sub" style="text-align:center;margin-bottom:10px">The transition can touch the senses too. A quick check keeps them in the picture.</p>'+
     '<div style="background:#fff;border:1px solid var(--line);border-radius:14px;padding:6px 14px">'+
       sigrow('Contrast',82,'#1A7A3B')+
@@ -344,11 +357,12 @@ var V = {
   summary: function(){return '<div class="scr" data-i="11"><div class="pad">'+
     '<div class="ey">Your Hormonal Profile</div>'+
     '<h2 class="t" style="font-size:19px">Everything, in one picture.</h2>'+
-    '<div class="mini" style="margin-top:12px">'+mdonut(58,'#D1409C',58)+'<div class="ml"><h4>Markable Index</h4><p>Overall hormonal signal</p></div><span class="mtag" style="background:var(--wash);color:var(--pk-deep)">Moderate</span></div>'+
-    '<div class="mini">'+mdonut(62,'#D1409C',62)+'<div class="ml"><h4>Hormonal Imprint</h4><p>Facial patterns</p></div><span class="mtag" style="background:var(--wash);color:var(--pk-deep)">Moderate</span></div>'+
-    '<div class="mini">'+mdonut(74,'#2E6BE6',74)+'<div class="ml"><h4>THINK</h4><p>Cognition</p></div><span class="mtag" style="background:#eaf1fe;color:#2E6BE6">Typical</span></div>'+
-    '<div class="mini">'+mdonut(80,'#1A7A3B',80)+'<div class="ml"><h4>SENSE</h4><p>Vision, hearing, balance</p></div><span class="mtag" style="background:#eaf5ee;color:#1A7A3B">Strong</span></div>'+
-    '<div class="mini">'+mdonut(58,'#B8860B','&bull;')+'<div class="ml"><h4>Symptom Burden</h4><p>Hot flashes, night sweats, sleep</p></div><span class="mtag" style="background:#fbf4e6;color:#B8860B">Moderate</span></div>'+
+    '<div class="legend"><div class="li"><span class="d" style="background:#1A7A3B"></span><span><b>Looking steady</b> means you are doing well in this area.</span></div><div class="li"><span class="d" style="background:#B8860B"></span><span><b>Worth discussing</b> means it is worth raising at your visit.</span></div></div>'+
+    '<div class="mini">'+mdonut(58,'#B8860B',58)+'<div class="ml"><h4>Markable Index</h4><p>Overall hormonal signal</p></div>'+statusChip('watch')+'</div>'+
+    '<div class="mini">'+mdonut(62,'#B8860B',62)+'<div class="ml"><h4>Hormonal Imprint</h4><p>Facial patterns</p></div>'+statusChip('watch')+'</div>'+
+    '<div class="mini">'+mdonut(74,'#1A7A3B',74)+'<div class="ml"><h4>THINK</h4><p>Cognition</p></div>'+statusChip('steady')+'</div>'+
+    '<div class="mini">'+mdonut(80,'#1A7A3B',80)+'<div class="ml"><h4>SENSE</h4><p>Vision, hearing, balance</p></div>'+statusChip('steady')+'</div>'+
+    '<div class="mini">'+mdonut(58,'#B8860B','&bull;')+'<div class="ml"><h4>Symptom Burden</h4><p>Hot flashes, night sweats, sleep</p></div>'+statusChip('watch')+'</div>'+
     '</div><div class="foot"><button class="btn btn-pk" onclick="next()">See what your clinician receives</button></div></div>';},
 
   report: function(){
