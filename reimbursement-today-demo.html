@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>MARKABLE - Device-Free Reimbursement Today (CCM / PCM)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --pk:#D1409C;--pk-deep:#B22F84;--navy:#1a1a2e;--muted:#5c5c6e;
+  --line:#ececf0;--wash:#faf5f9;--wash2:#f6f7fb;--green:#1A7A3B;--blue:#2E6BE6;--amber:#B8860B;--grey:#b6b6c0;
+  --font:'Inter',-apple-system,system-ui,Segoe UI,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%;background:#14141c;font-family:var(--font);overflow:hidden}
+.stage{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;padding:16px}
+.badge{position:fixed;top:14px;left:14px;z-index:400;display:flex;gap:7px}
+.badge span{background:var(--pk);color:#fff;font-size:10px;font-weight:800;padding:4px 11px;border-radius:8px;letter-spacing:1.2px}
+.badge .today{background:#12361f;color:#7fdca0}
+
+.win{width:1160px;max-width:calc(100vw - 32px);height:750px;max-height:calc(100vh - 32px);background:#fff;border-radius:14px;box-shadow:0 30px 80px rgba(0,0,0,.5);display:flex;flex-direction:column;overflow:hidden}
+.chrome{height:38px;background:#ededf2;display:flex;align-items:center;gap:8px;padding:0 14px;flex-shrink:0;border-bottom:1px solid #e0e0e6}
+.chrome .dot{width:11px;height:11px;border-radius:50%}
+.chrome .r{background:#ff5f57}.chrome .y{background:#febc2e}.chrome .g{background:#28c840}
+.chrome .url{flex:1;margin-left:12px;background:#fff;border-radius:7px;height:23px;display:flex;align-items:center;padding:0 12px;font-size:12px;color:#8a8a94;max-width:340px}
+
+.honesty{background:#16321f;color:#cdecd7;font-size:11.5px;font-weight:600;padding:8px 20px;display:flex;align-items:center;gap:9px;flex-shrink:0}
+.honesty .tg{background:var(--green);color:#fff;font-size:9px;font-weight:800;letter-spacing:.5px;padding:3px 9px;border-radius:6px;white-space:nowrap}
+.honesty b{color:#fff}
+
+.app{flex:1;display:flex;overflow:hidden}
+.main{flex:1;display:flex;flex-direction:column;overflow:hidden;border-right:1px solid var(--line)}
+.appbar{height:48px;flex-shrink:0;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 22px}
+.appbar .l{display:flex;align-items:center;gap:11px}
+.appbar .l img{height:16px}
+.appbar .l span{font-size:12.5px;font-weight:700;color:var(--navy);border-left:1px solid var(--line);padding-left:11px}
+.appbar .step{font-size:11px;font-weight:700;color:var(--muted)}
+.content{flex:1;overflow-y:auto;padding:26px 30px}
+
+.eyebrow{font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--pk);margin-bottom:6px}
+h1.t{font-size:22px;font-weight:800;color:var(--navy);letter-spacing:-.02em;line-height:1.2}
+.sub{font-size:14.5px;color:#43434f;line-height:1.6;margin-top:10px;max-width:600px}
+.who{display:inline-flex;align-items:center;gap:6px;font-size:10.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:4px 10px;border-radius:20px;margin-bottom:12px}
+.who.pt{background:#eef4ff;color:#2E6BE6}
+.who.cl{background:var(--wash);color:var(--pk-deep)}
+.who.sh{background:#f0f0f4;color:#555}
+
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin-top:18px}
+.card h3{font-size:13px;font-weight:800;color:var(--navy);margin-bottom:10px}
+.acts{list-style:none;display:flex;flex-direction:column;gap:11px}
+.acts li{display:flex;gap:11px;font-size:13.5px;color:#3c3c48;line-height:1.5}
+.acts .ic{flex:none;width:24px;height:24px;border-radius:7px;background:var(--wash);display:flex;align-items:center;justify-content:center;margin-top:1px}
+.acts b{color:var(--navy)}
+.dx{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.dxpill{display:inline-flex;align-items:center;gap:7px;background:#eaf5ee;border:1px solid #bfe3cc;color:#1A7A3B;font-size:12px;font-weight:700;padding:7px 13px;border-radius:20px}
+.dxpill .c{font-size:10px;opacity:.7;font-weight:600}
+.note{margin-top:16px;background:#fff8e9;border:1px solid #f0e2b8;border-radius:10px;padding:12px 15px;font-size:12.5px;color:#6b5a1e;line-height:1.55}
+.note b{color:#7a4a00}
+.audit{margin-top:16px;background:#fdf7fb;border:1.5px dashed var(--pk);border-radius:10px;padding:12px 15px;font-size:12px;color:#3c3c48;line-height:1.55}
+.audit .h{font-size:9.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--pk);margin-bottom:5px}
+.toggle{margin-top:14px;background:#f6f7fb;border:1px solid var(--line);border-radius:10px;padding:12px 15px;font-size:12.5px;color:#454552;line-height:1.55}
+.toggle b{color:var(--navy)}
+
+.econ{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
+.ecard{border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+.ecard .n{font-size:26px;font-weight:900;color:var(--green);letter-spacing:-.02em}
+.ecard .l{font-size:12.5px;color:#454552;line-height:1.4;margin-top:3px;font-weight:600}
+.ecard .s{font-size:11px;color:var(--muted);margin-top:4px}
+
+.track{width:340px;flex-shrink:0;background:var(--wash2);overflow-y:auto;padding:20px 20px 24px}
+.track .th{font-size:10.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--pk);margin-bottom:3px}
+.track .tsub{font-size:11px;color:var(--muted);margin-bottom:16px}
+.tw{background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 15px;margin-bottom:11px}
+.tw .lbl{font-size:10px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:7px;display:flex;justify-content:space-between;align-items:center}
+.tw .val{font-size:22px;font-weight:900;color:var(--navy);letter-spacing:-.02em}
+.tw .val small{font-size:13px;color:var(--grey);font-weight:700}
+.tbar{height:7px;border-radius:4px;background:#eee;overflow:hidden;margin-top:8px}
+.tbar i{display:block;height:100%;border-radius:4px;transition:width .5s}
+.pill{font-size:9.5px;font-weight:800;padding:3px 9px;border-radius:20px}
+.pill.ok{background:#eaf5ee;color:var(--green)}
+.pill.wait{background:#fbf4e6;color:var(--amber)}
+.pill.off{background:#f0f0f3;color:#999}
+.chk{display:flex;align-items:center;gap:10px}
+.chk .box{width:24px;height:24px;border-radius:7px;border:2px solid #d5d5dd;flex:none;display:flex;align-items:center;justify-content:center;transition:.2s}
+.chk .box.on{background:var(--green);border-color:var(--green)}
+.chk .ctx{font-size:12.5px;font-weight:700;color:var(--navy)}
+.codes{background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 15px}
+.codes .lbl{font-size:10px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:9px}
+.crow{display:flex;align-items:center;gap:9px;padding:7px 0;border-bottom:1px solid #f4f4f7}
+.crow:last-child{border-bottom:none}
+.crow .cdot{width:16px;height:16px;border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center}
+.crow .cc{font-size:12.5px;font-weight:800;color:var(--navy)}
+.crow .cd{font-size:10.5px;color:var(--muted);flex:1}
+.crow .cv{font-size:11.5px;font-weight:800}
+
+.gate{position:absolute;inset:0;background:#fff;z-index:50;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px}
+.gate .tg{background:#12361f;color:#7fdca0;font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;padding:7px 16px;border-radius:20px;margin-bottom:20px}
+.gate h1{font-size:29px;font-weight:900;color:var(--navy);letter-spacing:-.025em;max-width:660px;line-height:1.15}
+.gate p{font-size:14.5px;color:#43434f;line-height:1.6;max-width:640px;margin-top:14px}
+.gate p b{color:var(--navy)}
+.gate .limits{display:flex;flex-direction:column;gap:8px;margin-top:20px;max-width:640px;text-align:left}
+.gate .lim{display:flex;gap:10px;font-size:13px;color:#454552;line-height:1.45}
+.gate .lim .n{flex:none;width:22px;height:22px;border-radius:50%;background:var(--wash);color:var(--pk);font-weight:800;font-size:11px;display:flex;align-items:center;justify-content:center}
+.gate .lim b{color:var(--navy)}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 24px;border-radius:12px;font-family:var(--font);font-size:14.5px;font-weight:700;border:none;cursor:pointer;transition:transform .12s;text-decoration:none}
+.btn:active{transform:scale(.98)}
+.btn-pk{background:var(--pk);color:#fff;box-shadow:0 8px 22px rgba(209,64,156,.26)}
+.foot{margin-top:24px}
+
+.nav{position:fixed;left:18px;top:50%;transform:translateY(-50%);z-index:300;display:flex;flex-direction:column;gap:8px;width:150px}
+.nav .a{display:flex;align-items:center;gap:8px;padding:10px 13px;border-radius:11px;background:#fff;border:1.5px solid #2a2a38;cursor:pointer;transition:.15s}
+.nav .a:hover{border-color:var(--pk)}
+.nav .a svg{width:14px;height:14px}
+.nav .a span{font-size:11.5px;font-weight:700;color:#444}
+.nav .back{font-size:11px;color:#c9c9d6;text-align:center;padding:6px;text-decoration:none;display:block}
+.nav .back:hover{color:#fff}
+@media(max-width:1360px){.nav{display:none}}
+@media(max-width:900px){.track{display:none}.win{height:calc(100vh - 32px)}}
+</style>
+</head>
+<body>
+<div class="badge"><span>DEMO</span><span class="today">DEVICE-FREE · TODAY</span></div>
+<div class="stage">
+  <div class="win">
+    <div class="chrome">
+      <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+      <div class="url">console.markable.health / care-management</div>
+    </div>
+    <div class="honesty"><span class="tg">WORKS TODAY</span><span>No FDA device needed. The clinic bills <b>its own care-management time</b> (CCM / PCM); MARKABLE is the documentation layer. Qualifies via documented comorbidities, <b>not menopause itself</b>. Best fit: 65+ Medicare panel. Investor / B2B only.</span></div>
+    <div class="app">
+      <div class="main" style="position:relative">
+        <div class="appbar">
+          <div class="l"><img src="assets/markable-logo.png" alt="MARKABLE"><span>Care Management</span></div>
+          <div class="step" id="stepLabel"></div>
+        </div>
+        <div class="content" id="content"></div>
+
+        <div class="gate" id="gate">
+          <div class="tg">A device-free pathway that works today</div>
+          <h1>The reimbursement MARKABLE can support right now.</h1>
+          <p>RTM is blocked because it needs the tool to be an FDA device. The <b>care-management</b> codes are not: <b>CCM</b> and <b>PCM</b> pay a clinic for the clinician's own time managing a patient's chronic conditions, and they never ask what tool produced the data. MARKABLE is the documentation and efficiency layer behind that work. Three honest limits, up front:</p>
+          <div class="limits">
+            <div class="lim"><span class="n">1</span><span><b>Menopause itself never qualifies.</b> The patient qualifies through documented comorbidities (osteoporosis, depression, insomnia, cardiometabolic risk), not the life stage.</span></div>
+            <div class="lim"><span class="n">2</span><span><b>Cleanest fit is the 65+ Medicare panel.</b> The perimenopausal (~38 to 52) commercial cohort depends on the payer.</span></div>
+            <div class="lim"><span class="n">3</span><span><b>The code pays for the clinician's time, not for MARKABLE.</b> We are the layer that makes the work efficient and documented, never a billed item.</span></div>
+          </div>
+          <div class="foot"><button class="btn btn-pk" onclick="start()">See how a clean month works</button></div>
+        </div>
+      </div>
+      <div class="track" id="track"></div>
+    </div>
+  </div>
+</div>
+
+<div class="nav" id="nav">
+  <div class="a" onclick="prev()"><svg viewBox="0 0 24 24" fill="none" stroke="#D1409C" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg><span>Previous</span></div>
+  <div class="a" onclick="next()"><svg viewBox="0 0 24 24" fill="none" stroke="#D1409C" stroke-width="2.5"><path d="M9 6l6 6-6 6"/></svg><span>Next</span></div>
+  <a href="index.html" class="back">Demo home</a>
+</div>
+
+<script>
+var STEPS = [
+  { side:'sh', tag:'The patient', title:'Who actually qualifies, and why',
+    body:'<p class="sub">Ruth K., 63, postmenopausal, on the practice panel. What makes her billable is not her menopause; it is her documented chronic conditions, each active and expected to last a year or more.</p>'+
+      '<div class="dx"><span class="dxpill">Osteoporosis <span class="c">M81.0</span></span><span class="dxpill">Recurrent depression <span class="c">F33</span></span><span class="dxpill">Chronic insomnia <span class="c">G47.0</span></span></div>',
+    note:'Two or more qualifying conditions clears the <b>CCM</b> bar. Menopause (N95.x) is coded as a life stage, not a significant-risk chronic disease, so it never counts as one of the two. The chart anchors on the real comorbidities.',
+    cond:3, cm:0, plan:false, consent:false, codes:{ccm:'off', g2211:'off'}
+  },
+  { side:'cl', tag:'Set-up', title:'Care plan and consent',
+    body:'<p class="sub">Her clinician builds the comprehensive electronic care plan and takes her one-time consent. MARKABLE feeds the plan: her symptom map, THINK and SENSE trend, and Hormonal Profile become the between-visit picture the plan is monitored against.</p>',
+    acts:[['Clinician','Creates the care plan in the certified record, shares a copy with Ruth, and documents consent once (with the cost-sharing note).'],['MARKABLE','Supplies the structured care-plan content and the trend the plan is measured against. It is the documentation layer, not a billed item.']],
+    cond:3, cm:0, plan:true, consent:true, codes:{ccm:'wait', g2211:'off'}
+  },
+  { side:'pt', tag:'Between visits', title:'The month of care management',
+    body:'<p class="sub">Ruth logs her symptoms and completes her tools through the month. The clinical staff, under the clinician\'s supervision, review the data, coordinate her care, adjust the plan, and log every minute.</p>',
+    acts:[['Patient','Near-daily symptom and tool touches; a monthly re-Map that refreshes the trend.'],['Clinical staff','Review the trend, reconcile medications, coordinate with her other providers, and revise the care plan. Each action is time-stamped toward the monthly minutes.']],
+    note:'CCM has <b>no data-day rule and no device</b>. Self-reported data is a non-issue here; the review time is what counts, provided it is real, contemporaneously logged, and not double-counted against a visit.',
+    cond:3, cm:15, plan:true, consent:true, codes:{ccm:'wait', g2211:'off'}
+  },
+  { side:'cl', tag:'Month close', title:'The threshold is met, the code is billed',
+    body:'<p class="sub">By month-end the clinical staff have logged over 20 minutes of qualifying care-management time and revised the plan. The clinic bills its own professional work.</p>',
+    audit:'22 min this month: reviewed the symptom + THINK/SENSE trend across the month, reconciled osteoporosis and antidepressant therapy, coordinated a DEXA follow-up, and revised the care plan. Specific, contemporaneous, non-rounded.',
+    note:'Month closes to <b>CCM 99490</b> (first 20 minutes, ~$66 in 2026). A same-day office E/M can also carry the <b>G2211</b> longitudinal add-on (~$16). If staff genuinely log more time, 99439 adds ~$50 per extra 20 minutes.',
+    toggle:'<b>For an OB-GYN or specialty menopause clinic that is not her PCP:</b> bill <b>PCM 99424</b> instead (~$88), anchored on one serious condition such as osteoporosis, plus G2211. PCM is billable by OB-GYN, NP, PA, and Certified Nurse Midwife. CCM and PCM cannot both be billed the same month.',
+    cond:3, cm:22, plan:true, consent:true, codes:{ccm:'ok', g2211:'ok'}
+  },
+  { side:'sh', tag:'The economics, honestly', title:'What it is worth, and the limits that hold', econ:true,
+    body:'<p class="sub">Per 100 CCM-enrolled and eligible patients, 2026 Medicare-benchmarked. These are national averages that must be pinned to the CMS fee-schedule for the specific locality before any external use.</p>',
+    note:'<b>The three limits still hold:</b> qualify on documented comorbidities, never on menopause; the clean-payer case is the 65+ Medicare panel (commercial coverage of the perimenopausal cohort is payer-by-payer); and MARKABLE is never the billed item, so we never say "MARKABLE lets you bill $X" (that is the Anti-Kickback / False Claims line). This is investor and B2B-clinic material only, never the public wellness site.',
+    cond:3, cm:22, plan:true, consent:true, codes:{ccm:'ok', g2211:'ok'}
+  }
+];
+var cur=0;
+
+function tchip(state){return state==='ok'?'<span class="pill ok">Met</span>':(state==='wait'?'<span class="pill wait">Pending</span>':'<span class="pill off">Not yet</span>');}
+function cdot(state){
+  if(state==='ok')return '<span class="cdot" style="background:#eaf5ee"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#1A7A3B" stroke-width="3.5"><path d="M5 13l4 4L19 7"/></svg></span>';
+  if(state==='wait')return '<span class="cdot" style="background:#fbf4e6"></span>';
+  return '<span class="cdot" style="background:#f0f0f3"></span>';
+}
+function chkbox(on,label){return '<div class="chk"><div class="box'+(on?' on':'')+'">'+(on?'<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5"><path d="M5 13l4 4L19 7"/></svg>':'')+'</div><div class="ctx">'+label+'</div></div>';}
+
+function renderTracker(st){
+  var cmPct=Math.min(100,st.cm/20*100), cmColor=st.cm>=20?'#1A7A3B':'#B8860B';
+  var h='<div class="th">CCM billing tracker</div><div class="tsub">Requirements accruing this month</div>';
+  h+='<div class="tw"><div class="lbl">Qualifying conditions <span>'+(st.cond>=2?tchip("ok"):tchip("off"))+'</span></div><div class="val">'+st.cond+' <small>/ 2 needed</small></div></div>';
+  h+='<div class="tw"><div class="lbl">Care-management time <span>'+(st.cm>=20?tchip("ok"):(st.cm>0?tchip("wait"):tchip("off")))+'</span></div><div class="val">'+st.cm+':00 <small>/ 20:00</small></div><div class="tbar"><i style="width:'+cmPct+'%;background:'+cmColor+'"></i></div></div>';
+  h+='<div class="tw">'+chkbox(st.plan,'Comprehensive care plan')+'<div style="height:9px"></div>'+chkbox(st.consent,'Patient consent on file')+'</div>';
+  h+='<div class="codes"><div class="lbl">Codes met this month</div>'+
+    '<div class="crow">'+cdot(st.codes.ccm)+'<span class="cc">99490</span><span class="cd">CCM, first 20 min</span><span class="cv" style="color:'+(st.codes.ccm==='ok'?'#1A7A3B':'#999')+'">~$66</span></div>'+
+    '<div class="crow">'+cdot(st.codes.g2211)+'<span class="cc">G2211</span><span class="cd">E/M longitudinal add-on</span><span class="cv" style="color:'+(st.codes.g2211==='ok'?'#1A7A3B':'#999')+'">~$16</span></div>'+
+    '<div class="crow">'+cdot('off')+'<span class="cc">99424</span><span class="cd">PCM alt (OB-GYN, 1 condition)</span><span class="cv" style="color:#999">~$88</span></div>'+
+    '</div>';
+  document.getElementById('track').innerHTML=h;
+}
+function renderStep(n){
+  var s=STEPS[n], sideLabel=s.side==='pt'?'Patient':(s.side==='cl'?'Clinician':'Patient + Clinician');
+  var h='<div class="who '+s.side+'">'+sideLabel+'</div><div class="eyebrow">'+s.tag+'</div><h1 class="t">'+s.title+'</h1>'+s.body;
+  if(s.econ){h+='<div class="econ"><div class="ecard"><div class="n">~$79K</div><div class="l">CCM 99490 only, per 100 patients / year</div><div class="s">100 x ~$66 x 12, 2026 Medicare-benchmarked</div></div><div class="ecard"><div class="n">~$100-115K</div><div class="l">With one 99439 add-on on half the panel</div><div class="s">plus ~$16 G2211 on each longitudinal visit</div></div></div>';}
+  if(s.acts){h+='<div class="card"><h3>What happens</h3><ul class="acts">';s.acts.forEach(function(a){h+='<li><span class="ic"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#D1409C" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 12l2 2 4-4"/></svg></span><span><b>'+a[0]+'.</b> '+a[1]+'</span></li>';});h+='</ul></div>';}
+  if(s.audit){h+='<div class="audit"><div class="h">Care-management time log (for the chart)</div>'+s.audit+'</div>';}
+  if(s.note){h+='<div class="note">'+s.note+'</div>';}
+  if(s.toggle){h+='<div class="toggle">'+s.toggle+'</div>';}
+  document.getElementById('content').innerHTML=h;
+  document.getElementById('stepLabel').textContent='Step '+(n+1)+' of '+STEPS.length;
+  renderTracker(s);
+}
+function start(){document.getElementById('gate').style.display='none';cur=0;renderStep(0);}
+function next(){if(document.getElementById('gate').style.display==='none'){if(cur<STEPS.length-1){cur++;renderStep(cur);}}else{start();}}
+function prev(){if(cur>0){cur--;renderStep(cur);}}
+document.addEventListener('keydown',function(e){if(e.key==='ArrowRight')next();if(e.key==='ArrowLeft')prev();});
+renderTracker({cond:0,cm:0,plan:false,consent:false,codes:{ccm:'off',g2211:'off'}});
+</script>
+</body>
+</html>
