@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>MARKABLE - Care-Management Billing Checklist (CCM / PCM)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--pk:#D1409C;--pk-deep:#B22F84;--navy:#1a1a2e;--muted:#5c5c6e;--line:#ececf0;--wash:#faf5f9;--wash2:#f6f7fb;--green:#1A7A3B;--font:'Inter',-apple-system,system-ui,Segoe UI,sans-serif;}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:var(--font);color:var(--navy);background:#ececef;-webkit-font-smoothing:antialiased;padding:26px 16px}
+a{text-decoration:none;color:inherit}
+img{display:block;max-width:100%}
+.sheet{max-width:940px;margin:0 auto;background:#fff;border-radius:16px;box-shadow:0 18px 60px rgba(26,26,46,.16);overflow:hidden}
+.rule{height:6px;background:var(--pk)}
+.pad{padding:36px 44px 40px}
+.head{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-bottom:18px;border-bottom:1px solid var(--line);margin-bottom:22px}
+.head .l{display:flex;align-items:center;gap:12px}
+.head .l img{height:20px}
+.head .l .tag{font-size:12px;font-weight:600;color:var(--muted);border-left:1px solid var(--line);padding-left:12px}
+.head .back{font-size:12.5px;font-weight:700;color:var(--muted);display:inline-flex;align-items:center;gap:6px}
+.head .back:hover{color:var(--pk)}
+.dfree{display:inline-flex;align-items:center;gap:7px;background:#eaf5ee;border:1px solid #bfe3cc;color:var(--green);font-size:11px;font-weight:800;padding:4px 11px;border-radius:20px}
+
+.eyebrow{font-size:12px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:var(--pk);margin-bottom:9px}
+h1{font-size:30px;font-weight:900;letter-spacing:-.025em;line-height:1.12;margin-bottom:10px}
+.lede{font-size:15.5px;color:#43434f;line-height:1.55;max-width:660px}
+.lede b{color:var(--navy)}
+
+.block{border:1px solid var(--line);border-radius:14px;padding:20px 22px;margin-top:18px}
+.block.a{background:var(--wash2)}
+.block .bt{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.block .bt .n{width:26px;height:26px;border-radius:8px;background:var(--pk);color:#fff;font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.block .bt h3{font-size:16px;font-weight:800;color:var(--navy)}
+.block .bt .when{font-size:11px;font-weight:700;color:var(--muted);margin-left:auto;text-transform:uppercase;letter-spacing:.05em}
+.chk{display:flex;gap:12px;align-items:flex-start;padding:9px 0;cursor:pointer}
+.chk .box{width:22px;height:22px;border-radius:6px;border:2px solid #cfcfd8;flex:none;display:flex;align-items:center;justify-content:center;transition:.15s;margin-top:1px}
+.chk.on .box{background:var(--green);border-color:var(--green)}
+.chk .tx{font-size:14px;color:#3c3c48;line-height:1.5}
+.chk .tx b{color:var(--navy)}
+.chk .tx .sub{font-size:12px;color:var(--muted);margin-top:1px}
+.result{margin-top:14px;background:#fff;border:1.5px solid #bfe3cc;border-radius:10px;padding:12px 15px;font-size:13.5px;color:var(--navy);font-weight:600;line-height:1.5}
+.result b{color:var(--pk-deep)}
+.pcm-note{margin-top:16px;background:#fdf7fb;border:1px solid #f0d6e8;border-radius:12px;padding:16px 18px}
+.pcm-note h4{font-size:13.5px;font-weight:800;color:var(--pk-deep);margin-bottom:8px}
+.pcm-note ul{list-style:none;font-size:13.5px;color:#3c3c48;line-height:1.6}
+.pcm-note li{padding:2px 0}
+.pcm-note li b{color:var(--navy)}
+
+.split{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:18px}
+.col{border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+.col h4{font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;margin-bottom:10px}
+.col.mk h4{color:var(--pk)}.col.cl h4{color:var(--navy)}
+.col ul{list-style:none;font-size:13px;color:#454552;line-height:1.5}
+.col li{padding:5px 0;display:flex;gap:8px}
+.col li::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--pk);flex:none;margin-top:7px}
+.col.cl li::before{background:var(--navy)}
+
+.caveats{margin-top:18px;background:#fff8e9;border:1px solid #f0e2b8;border-radius:12px;padding:16px 20px}
+.caveats h4{font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#7a4a00;margin-bottom:9px}
+.caveats ol{padding-left:18px;font-size:13px;color:#6b5a1e;line-height:1.6}
+.caveats li{padding:2px 0}.caveats b{color:#7a4a00}
+.foot{margin-top:22px;padding-top:16px;border-top:1px solid var(--line);font-size:11px;color:#9a9aa6;line-height:1.6}
+@media(max-width:720px){.pad{padding:26px 22px}.split{grid-template-columns:1fr}h1{font-size:24px}.block .bt .when{display:none}}
+</style>
+</head>
+<body>
+<div class="sheet">
+  <div class="rule"></div>
+  <div class="pad">
+    <div class="head">
+      <div class="l"><img src="assets/markable-logo.png" alt="MARKABLE"><span class="tag">Care management</span></div>
+      <a class="back" href="index.html"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg> Back to demo</a>
+    </div>
+
+    <div class="eyebrow">For your billing team &middot; <span class="dfree">Device-free &middot; works today</span></div>
+    <h1>What has to be true to bill CCM this month.</h1>
+    <p class="lede">These codes pay your clinic for its own <b>care-management time</b>, so no FDA device is required. MARKABLE is the documentation and efficiency layer behind the work. Tick every box below for a given patient and the month is billable. (Click a box to check it.)</p>
+
+    <div class="block a">
+      <div class="bt"><div class="n">A</div><h3>Set up once, per patient</h3><div class="when">One time</div></div>
+      <div class="chk" onclick="t(this)"><div class="box"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5"><path d="M5 13l4 4L19 7"/></svg></div><div class="tx"><b>2+ qualifying chronic conditions documented.</b><div class="sub">Each active, expected to last 12 months or more, at significant risk. E.g. osteoporosis + depression. Never menopause itself.</div></div></div>
+      <div class="chk" onclick="t(this)"><div class="box"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5"><path d="M5 13l4 4L19 7"/></svg></div><div class="tx"><b>Comprehensive care plan in the certified EHR,</b> with a copy given to the patient.</div></div>
+      <div class="chk" onclick="t(this)"><div class="box"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5"><path d="M5 13l4 4L19 7"/></svg></div><div class="tx"><b>Patient consent on file,</b> once, including the cost-sharing disclosure and the right to stop.</div></div>
+      <div class="chk" onclick="t(this)"><div class="box"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5"><path d="M5 13l4 4L19 7"/></svg></div><div class="tx"><b>Initiating visit completed</b> for a new patient or one not seen in 12 months (E/M, annual wellness, or IPPE).</div></div>
+    </div>
+
+    <div class="block">
+      <div class="bt"><div class="n">B</div><h3>Confirm every month to bill</h3><div class="when">Each calendar month</div></div>
+      <div class="chk" onclick="t(this)"><div class="box"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5"><path d="M5 13l4 4L19 7"/></svg></div><div class="tx"><b>20+ minutes of care-management time,</b> by a physician/QHP or clinical staff under general supervision, contemporaneously logged.<div class="sub">Counts: reviewing the trend, medication reconciliation, coordinating with other providers, revising the plan, patient/caregiver contact. Does not count: the patient's own time, scheduling, admin.</div></div></div>
+      <div class="chk" onclick="t(this)"><div class="box"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5"><path d="M5 13l4 4L19 7"/></svg></div><div class="tx"><b>Care plan reviewed and revised</b> based on the month's data.</div></div>
+      <div class="chk" onclick="t(this)"><div class="box"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5"><path d="M5 13l4 4L19 7"/></svg></div><div class="tx"><b>At least one care-coordination or patient touch,</b> and 24/7 access to the care team is available.</div></div>
+      <div class="chk" onclick="t(this)"><div class="box"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5"><path d="M5 13l4 4L19 7"/></svg></div><div class="tx"><b>Only this practice bills CCM this patient this month,</b> no CCM + PCM together, and no minutes double-counted against an office visit.</div></div>
+      <div class="result">All boxes ticked &rarr; bill <b>CCM 99490</b> (first 20 min, ~$66). Add <b>99439</b> (~$50) per extra 20 minutes actually logged, and <b>G2211</b> (~$16) on the office E/M for the longitudinal relationship.</div>
+    </div>
+
+    <div class="pcm-note">
+      <h4>PCM variant &mdash; for an OB-GYN or specialty menopause clinic</h4>
+      <ul>
+        <li><b>One serious/complex condition</b> instead of two (osteoporosis is safest; refractory vasomotor symptoms needing frequent HRT titration is a stretch, confirm with counsel), with a disease-specific care plan.</li>
+        <li><b>30+ minutes</b> of care-management time per month (not 20).</li>
+        <li>Billable by <b>OB-GYN, NP, PA, and Certified Nurse Midwife</b> &rarr; <b>PCM 99424</b> (~$88). Cannot be billed the same month as CCM.</li>
+      </ul>
+    </div>
+
+    <div class="split">
+      <div class="col mk">
+        <h4>MARKABLE supplies</h4>
+        <ul>
+          <li>The care-plan content and the between-visit trend the plan is measured against</li>
+          <li>The patient's self-reported symptom, THINK and SENSE data, and Hormonal Profile</li>
+          <li>The audit-grade documentation and time record the clinician reviews and signs</li>
+          <li>Surfaces symptom signals that help the clinician recognize qualifying comorbidities</li>
+        </ul>
+      </div>
+      <div class="col cl">
+        <h4>The clinician must do</h4>
+        <ul>
+          <li>Diagnose and document the qualifying conditions (MARKABLE never diagnoses)</li>
+          <li>Perform and contemporaneously log the qualifying care-management time</li>
+          <li>Own the care plan in the certified EHR and take patient consent</li>
+          <li>Provide continuity and 24/7 access; select and submit the code</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="caveats">
+      <h4>Three lines you must not cross</h4>
+      <ol>
+        <li><b>Menopause itself never qualifies a patient.</b> Eligibility runs through documented comorbidities, never the life stage. Padding the count is a False Claims Act risk.</li>
+        <li><b>Cleanest coverage is the 65+ Medicare panel.</b> The perimenopausal commercial cohort depends on the payer; do not represent it as covered.</li>
+        <li><b>The code pays for the clinician's time, not for using MARKABLE.</b> Never say "MARKABLE lets you bill $X." MARKABLE is the layer behind the clinician's own billable work.</li>
+      </ol>
+    </div>
+
+    <div class="foot">
+      Investor and B2B-clinic reference only, not for the public wellness site. MARKABLE is a general-wellness product, not an FDA device, and is not itself a reimbursable service. Amounts are 2026 Medicare national averages and must be confirmed against the CMS Physician Fee Schedule Look-up Tool for the specific locality, and all billing decisions confirmed with the clinic's own compliance counsel. Sources: CMS MLN909188 (CCM), CMS G2211 FAQ, RHIhub / AAPC (PCM), AAFP.
+    </div>
+  </div>
+</div>
+<script>
+function t(el){el.classList.toggle('on');}
+</script>
+</body>
+</html>
