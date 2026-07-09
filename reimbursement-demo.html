@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>MARKABLE RTM Routine - Planned Pathway Demo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --pk:#D1409C;--pk-deep:#B22F84;--navy:#1a1a2e;--muted:#5c5c6e;
+  --line:#ececf0;--wash:#faf5f9;--wash2:#f6f7fb;--green:#1A7A3B;--blue:#2E6BE6;--amber:#B8860B;--grey:#b6b6c0;
+  --font:'Inter',-apple-system,system-ui,Segoe UI,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%;background:#14141c;font-family:var(--font);overflow:hidden}
+.stage{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;padding:16px}
+.badge{position:fixed;top:14px;left:14px;z-index:400;display:flex;gap:7px}
+.badge span{background:var(--pk);color:#fff;font-size:10px;font-weight:800;padding:4px 11px;border-radius:8px;letter-spacing:1.2px}
+.badge .plan{background:#3a2a44;color:#f4b8dd}
+
+.win{width:1160px;max-width:calc(100vw - 32px);height:750px;max-height:calc(100vh - 32px);background:#fff;border-radius:14px;box-shadow:0 30px 80px rgba(0,0,0,.5);display:flex;flex-direction:column;overflow:hidden}
+.chrome{height:38px;background:#ededf2;display:flex;align-items:center;gap:8px;padding:0 14px;flex-shrink:0;border-bottom:1px solid #e0e0e6}
+.chrome .dot{width:11px;height:11px;border-radius:50%}
+.chrome .r{background:#ff5f57}.chrome .y{background:#febc2e}.chrome .g{background:#28c840}
+.chrome .url{flex:1;margin-left:12px;background:#fff;border-radius:7px;height:23px;display:flex;align-items:center;padding:0 12px;font-size:12px;color:#8a8a94;max-width:340px}
+
+/* honesty strip */
+.honesty{background:#2a1e33;color:#f0d9ea;font-size:11.5px;font-weight:600;padding:8px 20px;display:flex;align-items:center;gap:9px;flex-shrink:0}
+.honesty .tg{background:var(--pk);color:#fff;font-size:9px;font-weight:800;letter-spacing:.5px;padding:3px 9px;border-radius:6px;white-space:nowrap}
+.honesty b{color:#fff}
+
+.app{flex:1;display:flex;overflow:hidden}
+.main{flex:1;display:flex;flex-direction:column;overflow:hidden;border-right:1px solid var(--line)}
+.appbar{height:48px;flex-shrink:0;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 22px}
+.appbar .l{display:flex;align-items:center;gap:11px}
+.appbar .l img{height:16px}
+.appbar .l span{font-size:12.5px;font-weight:700;color:var(--navy);border-left:1px solid var(--line);padding-left:11px}
+.appbar .step{font-size:11px;font-weight:700;color:var(--muted)}
+.content{flex:1;overflow-y:auto;padding:26px 30px}
+
+.eyebrow{font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--pk);margin-bottom:6px}
+h1.t{font-size:22px;font-weight:800;color:var(--navy);letter-spacing:-.02em;line-height:1.2}
+.sub{font-size:14.5px;color:#43434f;line-height:1.6;margin-top:10px;max-width:600px}
+.who{display:inline-flex;align-items:center;gap:6px;font-size:10.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:4px 10px;border-radius:20px;margin-bottom:12px}
+.who.pt{background:#eef4ff;color:#2E6BE6}
+.who.cl{background:var(--wash);color:var(--pk-deep)}
+.who.sh{background:#f0f0f4;color:#555}
+
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin-top:18px}
+.card h3{font-size:13px;font-weight:800;color:var(--navy);margin-bottom:10px}
+.acts{list-style:none;display:flex;flex-direction:column;gap:11px}
+.acts li{display:flex;gap:11px;font-size:13.5px;color:#3c3c48;line-height:1.5}
+.acts .ic{flex:none;width:24px;height:24px;border-radius:7px;background:var(--wash);display:flex;align-items:center;justify-content:center;margin-top:1px}
+.acts b{color:var(--navy)}
+.note{margin-top:16px;background:#fff8e9;border:1px solid #f0e2b8;border-radius:10px;padding:12px 15px;font-size:12.5px;color:#6b5a1e;line-height:1.55}
+.note b{color:#7a4a00}
+.audit{margin-top:16px;background:#fdf7fb;border:1.5px dashed var(--pk);border-radius:10px;padding:12px 15px;font-size:12px;color:#3c3c48;line-height:1.55}
+.audit .h{font-size:9.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--pk);margin-bottom:5px}
+
+/* economics */
+.econ{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
+.ecard{border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+.ecard .n{font-size:26px;font-weight:900;color:var(--pk);letter-spacing:-.02em}
+.ecard .l{font-size:12.5px;color:#454552;line-height:1.4;margin-top:3px;font-weight:600}
+.ecard .s{font-size:11px;color:var(--muted);margin-top:4px}
+
+/* TRACKER panel */
+.track{width:340px;flex-shrink:0;background:var(--wash2);overflow-y:auto;padding:20px 20px 24px}
+.track .th{font-size:10.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--pk);margin-bottom:3px}
+.track .tsub{font-size:11px;color:var(--muted);margin-bottom:16px}
+.tw{background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 15px;margin-bottom:11px}
+.tw .lbl{font-size:10px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:7px;display:flex;justify-content:space-between;align-items:center}
+.tw .val{font-size:22px;font-weight:900;color:var(--navy);letter-spacing:-.02em}
+.tw .val small{font-size:13px;color:var(--grey);font-weight:700}
+.tbar{height:7px;border-radius:4px;background:#eee;overflow:hidden;margin-top:8px}
+.tbar i{display:block;height:100%;border-radius:4px;transition:width .5s}
+.pill{font-size:9.5px;font-weight:800;padding:3px 9px;border-radius:20px}
+.pill.ok{background:#eaf5ee;color:var(--green)}
+.pill.wait{background:#fbf4e6;color:var(--amber)}
+.pill.off{background:#f0f0f3;color:#999}
+.comm{display:flex;align-items:center;gap:10px}
+.comm .box{width:24px;height:24px;border-radius:7px;border:2px solid #d5d5dd;flex:none;display:flex;align-items:center;justify-content:center;transition:.2s}
+.comm .box.on{background:var(--green);border-color:var(--green)}
+.comm .ctx{font-size:12.5px;font-weight:700;color:var(--navy)}
+.codes{background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 15px}
+.codes .lbl{font-size:10px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:9px}
+.crow{display:flex;align-items:center;gap:9px;padding:7px 0;border-bottom:1px solid #f4f4f7}
+.crow:last-child{border-bottom:none}
+.crow .cdot{width:16px;height:16px;border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center}
+.crow .cc{font-size:12.5px;font-weight:800;color:var(--navy);font-family:'Inter',monospace}
+.crow .cd{font-size:10.5px;color:var(--muted);flex:1}
+.crow .cv{font-size:11.5px;font-weight:800}
+
+/* gate + nav */
+.gate{position:absolute;inset:0;background:#fff;z-index:50;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px}
+.gate .tg{background:#2a1e33;color:#f4b8dd;font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;padding:7px 16px;border-radius:20px;margin-bottom:20px}
+.gate h1{font-size:30px;font-weight:900;color:var(--navy);letter-spacing:-.025em;max-width:640px;line-height:1.15}
+.gate p{font-size:15px;color:#43434f;line-height:1.65;max-width:600px;margin-top:16px}
+.gate p b{color:var(--navy)}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 24px;border-radius:12px;font-family:var(--font);font-size:14.5px;font-weight:700;border:none;cursor:pointer;transition:transform .12s;text-decoration:none}
+.btn:active{transform:scale(.98)}
+.btn-pk{background:var(--pk);color:#fff;box-shadow:0 8px 22px rgba(209,64,156,.26)}
+.btn-ghost{background:#fff;color:var(--navy);border:1.5px solid var(--line)}
+.btn-ghost:hover{border-color:var(--pk);color:var(--pk)}
+.foot{margin-top:22px;display:flex;gap:11px;flex-wrap:wrap}
+
+.nav{position:fixed;left:18px;top:50%;transform:translateY(-50%);z-index:300;display:flex;flex-direction:column;gap:8px;width:150px}
+.nav .a{display:flex;align-items:center;gap:8px;padding:10px 13px;border-radius:11px;background:#fff;border:1.5px solid #2a2a38;cursor:pointer;transition:.15s}
+.nav .a:hover{border-color:var(--pk)}
+.nav .a svg{width:14px;height:14px}
+.nav .a span{font-size:11.5px;font-weight:700;color:#444}
+.nav .back{font-size:11px;color:#c9c9d6;text-align:center;padding:6px;text-decoration:none;display:block}
+.nav .back:hover{color:#fff}
+@media(max-width:1360px){.nav{display:none}}
+@media(max-width:900px){.track{display:none}.win{height:calc(100vh - 32px)}}
+</style>
+</head>
+<body>
+<div class="badge"><span>DEMO</span><span class="plan">PLANNED · PHASE 2</span></div>
+<div class="stage">
+  <div class="win">
+    <div class="chrome">
+      <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+      <div class="url">console.markable.health / rtm</div>
+    </div>
+    <div class="honesty"><span class="tg">PLANNED PATHWAY</span><span>This model becomes available <b>only after</b> MARKABLE registers as a Class I Software as a Medical Device. <b>Not billable today.</b> Figures are 2026 CMS-benchmarked and illustrative.</span></div>
+    <div class="app">
+      <div class="main" style="position:relative">
+        <div class="appbar">
+          <div class="l"><img src="assets/markable-logo.png" alt="MARKABLE"><span>RTM Routine</span></div>
+          <div class="step" id="stepLabel"></div>
+        </div>
+        <div class="content" id="content"></div>
+
+        <!-- GATE -->
+        <div class="gate" id="gate">
+          <div class="tg">Planned reimbursement pathway</div>
+          <h1>How MARKABLE's monthly routine is designed to fit RTM.</h1>
+          <p><b>Phase 2, not today.</b> MARKABLE is currently a general-wellness platform, not an FDA medical device. RTM billing requires the monitoring tool to legally be an FDA-defined device. What follows illustrates the routine and the running requirements a clinic would meet once MARKABLE is registered as a Class I Software as a Medical Device. It is <b>not billable today</b>, and it is investor and partner material only.</p>
+          <div class="foot"><button class="btn btn-pk" onclick="start()">See the planned model</button></div>
+        </div>
+      </div>
+
+      <!-- TRACKER -->
+      <div class="track" id="track"></div>
+    </div>
+  </div>
+</div>
+
+<div class="nav" id="nav">
+  <div class="a" onclick="prev()"><svg viewBox="0 0 24 24" fill="none" stroke="#D1409C" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg><span>Previous</span></div>
+  <div class="a" onclick="next()"><svg viewBox="0 0 24 24" fill="none" stroke="#D1409C" stroke-width="2.5"><path d="M9 6l6 6-6 6"/></svg><span>Next</span></div>
+  <a href="index.html" class="back">Demo home</a>
+</div>
+
+<script>
+var NAME = "Maya";
+// tracker state per step: dataDays, mgmt (minutes), commOn, and code statuses
+var STEPS = [
+  { // 1 - setup
+    side:'sh', tag:'Month 1 · Day 1', title:'Setup, consent, and the order',
+    body:'<p class="sub">'+NAME+' completes her first 7-minute Hormonal Map and gives documented consent to monitoring. Her OB-GYN orders RTM under her active HRT plan and files medical necessity and consent to the chart.</p>',
+    acts:[['Patient','Onboards, consents, completes the first full Hormonal Map (selfie skin read, ~60-item symptom map, THINK, SENSE).'],['Clinician','Orders RTM under the HRT plan; documents medical necessity + consent (date, time, name); delivers device education.']],
+    note:'The setup event maps to <b>CPT 98975</b> (one-time, ~$22 in 2026). The monthly management timer starts at zero.',
+    dataDays:1, mgmt:0, comm:false,
+    codes:{s98975:'ok', device:'off', mgmt:'off'}
+  },
+  { // 2 - near-daily
+    side:'pt', tag:'Days 2 to 14', title:'Near-daily micro check-ins',
+    body:'<p class="sub">Most days she takes a 60-second symptom check-in plus a short THINK or SENSE touch. Between other work, her clinician reviews the baseline and the emerging trend, time-stamped in the console.</p>',
+    acts:[['Patient','Near-daily 60-second symptom + mood check-ins and a short cognitive or sensory micro-game. A friendly streak, no clinical framing.'],['Clinician','Reviews baseline and trend, sets alert thresholds, logs notes. Each review time-stamps and adds to the monthly minutes.']],
+    note:'Two independent clocks run in parallel: <b>data days</b> toward the device-supply threshold (16 in a rolling 30 days) and <b>management minutes</b> on the calendar month. The 16-day rule does not apply to the management codes.',
+    dataDays:12, mgmt:9, comm:false,
+    codes:{s98975:'ok', device:'wait', mgmt:'off'}
+  },
+  { // 3 - live call
+    side:'sh', tag:'Day ~15', title:'The required live check-in',
+    body:'<p class="sub">A short phone or video call. The clinician reviews her trend since the last visit live, discusses how she is responding to HRT, and adjusts the plan. This call is the one interactive communication RTM requires every month.</p>',
+    acts:[['Shared','A 5 to 8 minute live call. The clinician shares the trend, they decide the next step together, and the clinician documents the decision.']],
+    note:'A live, synchronous audio or video contact is <b>mandatory</b> once per calendar month for the management codes. Text, email, and portal messages do not count. At ~16 minutes with the call done, the routine has cleared the <b>10-minute tier (CPT 98979, ~$26)</b>; the 20-minute tier is still open.',
+    dataDays:13, mgmt:16, comm:true,
+    codes:{s98975:'ok', device:'wait', mgmt:'wait'}
+  },
+  { // 4 - month-end remap
+    side:'pt', tag:'Days 24 to 30', title:'The month-end re-Map',
+    body:'<p class="sub">'+NAME+' completes her second full Hormonal Map, refreshing the trend graph for her next visit. Her data-day count crosses 16.</p>',
+    acts:[['Patient','Second full ~7-minute Hormonal Map. Her app shows this read against her baseline, the artifact her clinician uses at the next visit.']],
+    note:'Crossing 16 data days would unlock a device-supply code for the 30-day period, <b>if</b> a qualifying RTM device code existed for hormonal monitoring. Today there is none, which is one of the two honest gaps below.',
+    dataDays:16, mgmt:16, comm:true,
+    codes:{s98975:'ok', device:'gap', mgmt:'wait'}
+  },
+  { // 5 - month close
+    side:'cl', tag:'Month close', title:'Requirements met, code selected',
+    body:'<p class="sub">The clinician finalizes the plan and totals the time log. All three monthly requirements are green, and the management code resolves.</p>',
+    acts:[['Clinician','Reviews the crossed-16-day dataset and the fresh re-Map, finalizes plan changes, totals and signs the time log, and selects the code that was met.']],
+    audit:'21 min this month: reviewed 17 days of symptom and THINK/SENSE data, adjusted the HRT-monitoring plan, and completed a 7-minute live call on the 15th. Notes are specific, never rounded, since round numbers are an audit red flag.',
+    note:'Full tier met this month: <b>CPT 98980</b> (first 20 minutes, ~$54). In a high-touch month, such as active titration, each additional 20 minutes adds <b>CPT 98981</b> (~$41). A lighter month would land on the floor tier, 98979.',
+    dataDays:16, mgmt:21, comm:true,
+    codes:{s98975:'ok', device:'gap', mgmt:'ok'}
+  },
+  { // 6 - economics + honesty
+    side:'sh', tag:'The economics, honestly', title:'What the routine is worth, and what has to be true',
+    econ:true,
+    body:'<p class="sub">Per 100 monitored patients, at a realistic ~75% monthly capture rate, 2026 Medicare-benchmarked. A commercial PPO population, such as a virtual-care company\'s, varies by payer and some payers have no defined RTM policy.</p>',
+    note:'<b>Two honest gaps that counsel must close first:</b> (1) there is no RTM device-supply code built for hormonal or menopause monitoring, so the pathway needs a new dedicated CPT category or a narrowly registered device; (2) whether the management codes (98980) can be billed without a matching device-supply code is not settled by any primary source. Everything here is the planned Phase-2 model, contingent on FDA SaMD registration, an ordering provider, medical necessity, patient consent, and the monthly live call. It is not billable today.',
+    dataDays:16, mgmt:21, comm:true,
+    codes:{s98975:'ok', device:'gap', mgmt:'ok'}
+  }
+];
+var cur=0;
+
+function tchip(state){
+  if(state==='ok')return '<span class="pill ok">Met</span>';
+  if(state==='wait')return '<span class="pill wait">Pending</span>';
+  if(state==='gap')return '<span class="pill wait">Gap</span>';
+  return '<span class="pill off">Not yet</span>';
+}
+function cdot(state){
+  if(state==='ok')return '<span class="cdot" style="background:#eaf5ee"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#1A7A3B" stroke-width="3.5"><path d="M5 13l4 4L19 7"/></svg></span>';
+  if(state==='gap')return '<span class="cdot" style="background:#fbf4e6"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#B8860B" stroke-width="3"><path d="M12 8v5M12 16v.5"/></svg></span>';
+  if(state==='wait')return '<span class="cdot" style="background:#fbf4e6"></span>';
+  return '<span class="cdot" style="background:#f0f0f3"></span>';
+}
+function fmtMin(m){var s=Math.round((m%1)*60);return m+':00';}
+
+function renderTracker(st){
+  var ddPct=Math.min(100,st.dataDays/16*100);
+  var mgPct=Math.min(100,st.mgmt/20*100);
+  var ddColor=st.dataDays>=16?'#1A7A3B':'#B8860B';
+  var mgColor=st.mgmt>=20?'#1A7A3B':'#B8860B';
+  var html='<div class="th">RTM billing tracker</div><div class="tsub">Requirements accruing this month</div>';
+  // data days
+  html+='<div class="tw"><div class="lbl">Data days <span>'+(st.dataDays>=16?tchip("ok"):tchip("wait"))+'</span></div><div class="val">'+st.dataDays+' <small>/ 16</small></div><div class="tbar"><i style="width:'+ddPct+'%;background:'+ddColor+'"></i></div></div>';
+  // mgmt time
+  html+='<div class="tw"><div class="lbl">Management time <span>'+(st.mgmt>=20?tchip("ok"):(st.mgmt>=10?tchip("wait"):tchip("off")))+'</span></div><div class="val">'+fmtMin(st.mgmt)+' <small>/ 20:00</small></div><div class="tbar"><i style="width:'+mgPct+'%;background:'+mgColor+'"></i></div></div>';
+  // interactive comm
+  html+='<div class="tw"><div class="lbl">Interactive communication</div><div class="comm"><div class="box'+(st.comm?' on':'')+'">'+(st.comm?'<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5"><path d="M5 13l4 4L19 7"/></svg>':'')+'</div><div class="ctx">'+(st.comm?'Live call done':'Live call required')+'</div></div></div>';
+  // codes met
+  html+='<div class="codes"><div class="lbl">Codes met this month</div>'+
+    '<div class="crow">'+cdot(st.codes.s98975)+'<span class="cc">98975</span><span class="cd">Setup (one-time)</span><span class="cv" style="color:'+(st.codes.s98975==='ok'?'#1A7A3B':'#999')+'">~$22</span></div>'+
+    '<div class="crow">'+cdot(st.codes.device)+'<span class="cc">989xx</span><span class="cd">Device supply '+(st.codes.device==='gap'?'· no hormonal code':'')+'</span><span class="cv" style="color:'+(st.codes.device==='gap'?'#B8860B':'#999')+'">'+(st.codes.device==='gap'?'gap':'—')+'</span></div>'+
+    '<div class="crow">'+cdot(st.codes.mgmt)+'<span class="cc">'+(st.mgmt>=20?'98980':'98979')+'</span><span class="cd">Management '+(st.mgmt>=20?'(20 min)':'(10-19 min)')+'</span><span class="cv" style="color:'+(st.codes.mgmt==='ok'?'#1A7A3B':(st.mgmt>=10&&st.comm?'#B8860B':'#999'))+'">'+(st.mgmt>=20?'~$54':(st.mgmt>=10?'~$26':'—'))+'</span></div>'+
+    '</div>';
+  document.getElementById('track').innerHTML=html;
+}
+
+function renderStep(n){
+  var s=STEPS[n];
+  var sideClass=s.side, sideLabel=s.side==='pt'?'Patient':(s.side==='cl'?'Clinician':'Patient + Clinician');
+  var h='<div class="who '+sideClass+'">'+sideLabel+'</div>'+
+    '<div class="eyebrow">'+s.tag+'</div>'+
+    '<h1 class="t">'+s.title+'</h1>'+ s.body;
+  if(s.econ){
+    h+='<div class="econ">'+
+      '<div class="ecard"><div class="n">~$86K</div><div class="l">20-minute tier, per 100 patients / year</div><div class="s">98980 + setup, ~75% capture, 2026 Medicare-benchmarked</div></div>'+
+      '<div class="ecard"><div class="n">~$123K</div><div class="l">Full stack, per 100 patients / year</div><div class="s">device + 98980 + 98981, ~75% capture</div></div>'+
+      '</div>';
+  }
+  if(s.acts){
+    h+='<div class="card"><h3>What happens</h3><ul class="acts">';
+    s.acts.forEach(function(a){
+      h+='<li><span class="ic"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#D1409C" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 12l2 2 4-4"/></svg></span><span><b>'+a[0]+'.</b> '+a[1]+'</span></li>';
+    });
+    h+='</ul></div>';
+  }
+  if(s.audit){h+='<div class="audit"><div class="h">One-click time-log note (for the chart)</div>'+s.audit+'</div>';}
+  if(s.note){h+='<div class="note">'+s.note+'</div>';}
+  document.getElementById('content').innerHTML=h;
+  document.getElementById('stepLabel').textContent='Step '+(n+1)+' of '+STEPS.length;
+  renderTracker(s);
+}
+
+function start(){document.getElementById('gate').style.display='none';cur=0;renderStep(0);}
+function next(){if(document.getElementById('gate').style.display==='none'){if(cur<STEPS.length-1){cur++;renderStep(cur);}}else{start();}}
+function prev(){if(cur>0){cur--;renderStep(cur);}}
+document.addEventListener('keydown',function(e){if(e.key==='ArrowRight')next();if(e.key==='ArrowLeft')prev();});
+// tracker shows empty state behind the gate
+renderTracker({dataDays:0,mgmt:0,comm:false,codes:{s98975:'off',device:'off',mgmt:'off'}});
+</script>
+</body>
+</html>
