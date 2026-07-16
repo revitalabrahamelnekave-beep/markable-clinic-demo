@@ -102,37 +102,26 @@ h2.t{font-size:22px;font-weight:800;color:var(--navy);line-height:1.18;letter-sp
 .dots span:nth-child(2){animation-delay:.2s}.dots span:nth-child(3){animation-delay:.4s}
 @keyframes bl{0%,100%{opacity:.3}50%{opacity:1}}
 
-/* result rings */
-.ring{width:118px;height:118px;position:relative;margin:0 auto}
-.ring svg{transform:rotate(-90deg)}
-.ring .val{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
-.ring .num{font-size:32px;font-weight:900;color:var(--navy);letter-spacing:-.02em}
-.ring .u{font-size:10px;color:#aaa;font-weight:600;margin-top:-2px}
-.cat{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:800;letter-spacing:.01em;padding:7px 15px;border-radius:20px;margin-top:12px}
-.cat::before{content:'';width:9px;height:9px;border-radius:50%}
-.cat.steady{background:#eaf5ee;color:#1A7A3B}.cat.steady::before{background:#1A7A3B}
-.cat.watch{background:#fbf4e6;color:#B8860B}.cat.watch::before{background:#B8860B}
-.stat{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:800;padding:5px 11px;border-radius:20px;white-space:nowrap}
-.stat::before{content:'';width:8px;height:8px;border-radius:50%}
-.stat.steady{background:#eaf5ee;color:#1A7A3B}.stat.steady::before{background:#1A7A3B}
-.stat.watch{background:#fbf4e6;color:#B8860B}.stat.watch::before{background:#B8860B}
+/* result status (no numbers) */
+.catwrap{text-align:center;margin:16px 0 6px}
+.catpill{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:800;padding:8px 16px;border-radius:20px}
+.catpill::before{content:'';width:9px;height:9px;border-radius:50%;background:currentColor}
+.rows{background:#fff;border:1px solid var(--line);border-radius:14px;padding:4px 14px;margin-top:4px}
+.row{display:flex;justify-content:space-between;align-items:center;padding:11px 0;border-bottom:1px solid #f2f2f5}
+.row:last-child{border-bottom:none}
+.row .rn{font-size:13px;color:#333;font-weight:600}
+.row .rl{font-size:12px;font-weight:800;display:inline-flex;align-items:center;gap:7px}
+.row .rl::before{content:'';width:8px;height:8px;border-radius:50%;background:currentColor}
 .legend{background:#fafafb;border:1px solid var(--line);border-radius:12px;padding:11px 14px;margin:12px 0 14px}
 .legend .li{display:flex;align-items:center;gap:9px;font-size:11.5px;color:#555;line-height:1.5}
 .legend .li+.li{margin-top:5px}
 .legend .d{width:10px;height:10px;border-radius:50%;flex:none}
 .legend b{color:var(--navy);font-weight:700}
-.sig{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid #f2f2f5}
-.sig:last-child{border-bottom:none}
-.sig .sn{font-size:13px;color:#333;font-weight:600}
-.sig .sv{font-size:13px;font-weight:800}
-.bar{height:6px;border-radius:4px;background:#eee;overflow:hidden;flex:1;margin:0 10px}
-.bar i{display:block;height:100%;border-radius:4px}
 .face{width:100%;border-radius:14px;display:block}
 
 /* summary */
 .mini{display:flex;align-items:center;gap:12px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:13px 15px;margin-bottom:9px}
-.mdonut{width:52px;height:52px;flex:none;position:relative}
-.mdonut .mn{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:900;color:var(--navy)}
+.mini .mi{width:40px;height:40px;border-radius:11px;flex:none;display:flex;align-items:center;justify-content:center}
 .mini .ml{flex:1}
 .mini h4{font-size:14px;font-weight:700;color:var(--navy)}
 .mini p{font-size:11px;color:var(--muted)}
@@ -140,6 +129,24 @@ h2.t{font-size:22px;font-weight:800;color:var(--navy);line-height:1.18;letter-sp
 
 /* report */
 .reportimg{width:100%;border-radius:12px;box-shadow:0 2px 10px rgba(0,0,0,.06)}
+
+/* between visits + update flow */
+.alertcard{background:#fff4e0;border:1px solid #f1d3a1;border-radius:12px;padding:11px 13px;margin:12px 0;display:flex;align-items:center;gap:10px;cursor:pointer;transition:transform .12s}
+.alertcard:active{transform:scale(.985)}
+.alertcard .at{font-size:13px;font-weight:700;color:var(--navy)}
+.alertcard .ad{font-size:11.5px;color:#8a6100;margin-top:1px}
+.uov{position:absolute;inset:0;background:var(--bg);z-index:5;display:none;flex-direction:column;overflow-y:auto}
+.uov.show{display:flex}
+.ctx{background:var(--wash);border:1px solid #f0e3ee;border-radius:14px;padding:14px 16px;margin:12px 0}
+.ctx .cx{font-size:13.5px;color:#333;line-height:1.6}
+.ctx .cn{font-size:10.5px;color:#aaa;margin-top:8px}
+.sst{display:flex;align-items:center;gap:9px;font-size:13px;color:#999;padding:8px 0;border-bottom:1px solid #f4f4f6}
+.sst:last-child{border-bottom:none}
+.sst .dot{width:20px;text-align:center;font-weight:800;color:#ccc;flex:none}
+.sst.ok{color:var(--navy);font-weight:600}
+.sst.ok .dot{color:#0a7c42}
+.donetopic{font-size:13px;color:#444;padding:3px 0}
+.appt{background:rgba(46,107,230,.06);border:1px solid rgba(46,107,230,.14);border-radius:12px;padding:13px 16px;font-size:13px;color:#333;line-height:1.55;margin-top:16px}
 
 /* close */
 .done{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;text-align:center;padding:36px 26px;background:linear-gradient(180deg,#fff,var(--wash))}
@@ -214,34 +221,44 @@ var SCREENS = [
   {id:"sense", label:"SENSE, senses"},
   {id:"summary", label:"Your profile"},
   {id:"report", label:"For your clinician"},
+  {id:"between", label:"Between visits"},
   {id:"done", label:"Ready for the visit", noprog:true}
 ];
 var cur = 0;
 
-function ring(pct,color,num,unit){
-  var r=52,c=2*Math.PI*r,off=c*(1-pct/100);
-  return '<div class="ring"><svg width="118" height="118"><circle cx="59" cy="59" r="52" stroke="#eee" stroke-width="9" fill="none"/><circle cx="59" cy="59" r="52" stroke="'+color+'" stroke-width="9" fill="none" stroke-linecap="round" stroke-dasharray="'+c+'" stroke-dashoffset="'+off+'"/></svg><div class="val"><div class="num">'+num+'</div><div class="u">'+(unit||'/100')+'</div></div></div>';
-}
-function mdonut(pct,color,num){
-  var r=22,c=2*Math.PI*r,off=c*(1-pct/100);
-  return '<div class="mdonut"><svg width="52" height="52"><circle cx="26" cy="26" r="22" stroke="#eee" stroke-width="5" fill="none"/><circle cx="26" cy="26" r="22" stroke="'+color+'" stroke-width="5" fill="none" stroke-linecap="round" stroke-dasharray="'+c+'" stroke-dashoffset="'+off+'" transform="rotate(-90 26 26)"/></svg><div class="mn">'+num+'</div></div>';
-}
-function sigrow(name,val,color){
-  return '<div class="sig"><span class="sn">'+name+'</span><span class="bar"><i style="width:'+val+'%;background:'+color+'"></i></span><span class="sv" style="color:'+color+'">'+val+'</span></div>';
-}
-function statusChip(kind){return kind==='steady'?'<span class="stat steady">Looking steady</span>':'<span class="stat watch">Worth discussing</span>';}
+// One consistent progress scale (change since the previous mapping). No numeric scores are shown to the patient.
+var TR = [
+  {label:"Improving", color:"#1A7A3B"},
+  {label:"Stable",    color:"#2E6BE6"},
+  {label:"No change", color:"#B8860B"}
+];
+function catPill(t){var v=TR[t];return '<div class="catwrap"><span class="catpill" style="background:'+v.color+'14;color:'+v.color+'">'+v.label+'</span></div>';}
+function rowsHtml(items){var h='<div class="rows">';items.forEach(function(it){var v=TR[it.t];h+='<div class="row"><span class="rn">'+it.n+'</span><span class="rl" style="color:'+v.color+'">'+v.label+'</span></div>';});return h+'</div>';}
+var ICON={
+  imprint:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D1409C" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M8.5 15a4 4 0 007 0"/><path d="M8.5 10h.01M15.5 10h.01"/></svg>',
+  symptoms:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D1409C" stroke-width="1.8"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h4"/></svg>',
+  think:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D1409C" stroke-width="1.8"><path d="M9 3a4 4 0 00-4 4 3 3 0 00-1 5 3 3 0 002 5 3 3 0 006 0V5a2 2 0 00-2-2z"/><path d="M15 7a2 2 0 012 2 3 3 0 011 5"/></svg>',
+  sense:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D1409C" stroke-width="1.8"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>'
+};
+
+// "Update your clinic" flow (overlay within the between-visits screen)
+function openUpdate(){upStep(1);}
+function upStep(n){[1,2,3].forEach(function(i){var el=document.getElementById('uov'+i);if(el)el.classList.toggle('show',i===n);});}
+function closeUpdate(){[1,2,3].forEach(function(i){var el=document.getElementById('uov'+i);if(el)el.classList.remove('show');});}
+function upSend(){upStep(3);setTimeout(function(){var t=document.getElementById('ust2t'),d=document.getElementById('ust2d'),row=document.getElementById('ust2');if(t){t.textContent='Reviewed at the clinic. No action needed right now.';d.innerHTML='&#10003;';row.classList.add('ok');}},2500);}
+function whyToggle(){var b=document.getElementById('whyBox');if(b)b.style.display=b.style.display==='none'?'block':'none';}
 
 var V = {
   lock: function(){return '<div class="scr" data-i="0"><div class="lock">'+
     '<div class="time">9:41</div><div class="date">Tuesday, June 3</div>'+
     '<div class="notif" onclick="next()"><div class="nh"><div class="ic"><svg width="15" height="15" viewBox="0 0 24 24" fill="#fff"><path d="M20 2H4a2 2 0 00-2 2v18l4-4h14a2 2 0 002-2V4a2 2 0 00-2-2z"/></svg></div><div class="nm">'+CLINIC+'</div><div class="nt">now</div></div>'+
-    '<div class="nb">Hi '+NAME+', ahead of your visit with <b>'+CLINICIAN+'</b> on Jun 8, take a short at-home mapping so your clinician has the full picture before you meet. It takes about 7 minutes. <b>Tap to begin.</b></div></div>'+
+    '<div class="nb">Hi '+NAME+', ahead of your follow-up visit with <b>'+CLINICIAN+'</b> on Jun 8, let\'s update your mapping so she can see how things have changed since last time. It takes about 7 minutes. <b>Tap to begin.</b></div></div>'+
     '<div class="taphint">Tap the message to start the demo</div></div></div>';},
 
   landing: function(){return '<div class="scr" data-i="1"><div class="pad">'+
     '<div class="ey">'+CLINIC+'</div>'+
-    '<h2 class="t">'+NAME+', let\'s map where you stand before your visit.</h2>'+
-    '<p class="sub" style="margin-top:8px">Perimenopause shows up across the whole body, and it shifts week to week. This 7-minute mapping gives '+CLINICIAN+' an objective picture, builds a baseline, and lets you both track what changes over time.</p>'+
+    '<h2 class="t">'+NAME+', let\'s update your mapping and see what has changed.</h2>'+
+    '<p class="sub" style="margin-top:8px">Perimenopause shows up across the whole body, and it shifts week to week. This 7-minute update shows '+CLINICIAN+' how things have changed since your last visit, and keeps building the picture you follow together over time.</p>'+
     '<div class="steps">'+
       '<div class="stp"><div class="n">1</div><div><h4>Face mapping</h4><p>A selfie reads skin patterns that studies associate with the hormonal transition.</p></div></div>'+
       '<div class="stp"><div class="n">2</div><div><h4>Symptom map</h4><p>Around 60 signs that often come with perimenopause and menopause.</p></div></div>'+
@@ -256,7 +273,7 @@ var V = {
     '<div class="ey">Informed consent</div>'+
     '<p class="sub" style="margin:6px 0 4px">This mapping gathers information from your selfie, short cognitive and sensory checks, and your symptoms, then builds a picture you and your clinician can follow over time. It is a tool for personal awareness and tracking, not a medical diagnosis. Your responses and photo are processed by MARKABLE Ltd., which provides this tool to '+CLINIC+', and kept only as long as needed for your care. You stay in control of your data.</p>'+
     '<div class="steps" style="padding:2px 14px">'+
-      '<div class="cItem" onclick="tc(0)"><div class="cbox" id="cb0"></div><div class="ct">I agree to processing of my selfie, cognitive and sensory checks, and symptoms, and to sharing the results with my clinician at '+CLINIC+'. I understand my facial photo is analyzed to produce skin-pattern scores, that this may be treated as biometric information under some state laws, and that the photo is deleted after processing. Ages 18+. <span class="tagr">Required</span></div></div>'+
+      '<div class="cItem" onclick="tc(0)"><div class="cbox" id="cb0"></div><div class="ct">I agree to processing of my selfie, cognitive and sensory checks, and symptoms, and to sharing the results with my clinician at '+CLINIC+'. I understand my facial photo is analyzed to produce skin-pattern signals, that this may be treated as biometric information under some state laws, and that the photo is stored securely as part of my record, with identified data protected. Ages 18+. <span class="tagr">Required</span></div></div>'+
       '<div class="cItem" onclick="tc(1)"><div class="cbox" id="cb1"></div><div class="ct">I agree that my de-identified data may be used for research that advances midlife women\'s health. <span class="tago">Optional</span></div></div>'+
       '<div class="cItem" onclick="tc(2)"><div class="cbox" id="cb2"></div><div class="ct">I have read the <span style="color:var(--pk);text-decoration:underline">Privacy Policy</span> and <span style="color:var(--pk);text-decoration:underline">Terms</span>, and I can ask MARKABLE to delete the data it holds at any time. <span class="tagr">Required</span></div></div>'+
     '</div>'+
@@ -265,7 +282,7 @@ var V = {
   scanintro: function(){return '<div class="scr" data-i="3"><div class="pad" style="text-align:center">'+
     '<div class="ey">Step 1 of 3</div>'+
     '<h2 class="t">A quick face mapping</h2>'+
-    '<p class="sub" style="margin:8px 0 14px">Hold your phone at eye level in good light, and follow the guide on screen. It takes a few seconds. The photo is processed into pattern scores, then the image is deleted. Only the scores become part of your profile.</p>'+
+    '<p class="sub" style="margin:8px 0 14px">Hold your phone at eye level in good light, and follow the guide on screen. It takes a few seconds. The photo is processed into pattern signals that go into your profile, and it is stored securely as part of your record.</p>'+
     '<div style="background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px;text-align:left">'+
       '<div style="display:flex;gap:11px;align-items:center;margin-bottom:12px"><div style="width:34px;height:34px;border-radius:9px;background:var(--wash);display:flex;align-items:center;justify-content:center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#D1409C" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M2 12h2m16 0h2M12 2v2m0 16v2"/></svg></div><div style="font-size:13px;color:#444"><b>Good, even light.</b> Face a window if you can.</div></div>'+
       '<div style="display:flex;gap:11px;align-items:center;margin-bottom:12px"><div style="width:34px;height:34px;border-radius:9px;background:var(--wash);display:flex;align-items:center;justify-content:center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#D1409C" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-6 8-6s8 2 8 6"/></svg></div><div style="font-size:13px;color:#444"><b>No makeup if possible.</b> A clean face reads best.</div></div>'+
@@ -299,104 +316,140 @@ var V = {
 
   imprint: function(){return '<div class="scr" data-i="7"><div class="pad">'+
     '<div class="ey">Hormonal Imprint, from your selfie</div>'+
-    '<h2 class="t" style="font-size:19px">Skin patterns associated with the transition.</h2>'+
-    '<div style="text-align:center;margin:16px 0 4px">'+ring(62,'#B8860B',62)+
-      '<div class="cat watch">Worth discussing</div></div>'+
-    '<p class="sub" style="text-align:center;margin-bottom:10px">Your face shows patterns that research associates with hormonal change. This is a wellness signal for awareness, not a diagnosis.</p>'+
-    '<div style="background:#fff;border:1px solid var(--line);border-radius:14px;padding:6px 14px">'+
-      sigrow('Skin hydration patterns',70,'#B8860B')+
-      sigrow('Periorbital fine lines',69,'#B8860B')+
-      sigrow('Skin tone and redness',74,'#B8860B')+
-      sigrow('Texture and firmness',66,'#B8860B')+
-    '</div>'+
+    '<h2 class="t" style="font-size:19px">Skin patterns, compared with your last mapping.</h2>'+
+    catPill(0)+
+    '<p class="sub" style="text-align:center;margin:10px 0">Your skin patterns have moved in a good direction since your last mapping. This is a wellness signal for awareness, not a diagnosis.</p>'+
+    rowsHtml([{n:'Skin hydration patterns',t:0},{n:'Periorbital fine lines',t:0},{n:'Skin tone and redness',t:0},{n:'Texture and firmness',t:1}])+
+    '<div class="legend" style="margin-top:12px"><div class="li"><span class="d" style="background:#1A7A3B"></span><span><b>Improving</b></span><span class="d" style="background:#2E6BE6;margin-left:10px"></span><span><b>Stable</b></span><span class="d" style="background:#B8860B;margin-left:10px"></span><span><b>No change</b></span></div><div class="li" style="margin-top:6px"><span style="color:#999">Each area is compared with your previous mapping.</span></div></div>'+
     '</div><div class="foot"><button class="btn btn-pk" onclick="next()">Next, your symptom map</button></div></div>';},
 
   symptoms: function(){return '<div class="scr" data-i="8"><div class="pad">'+
     '<div class="ey">Symptom map</div>'+
-    '<h2 class="t" style="font-size:19px">The signs you are carrying right now.</h2>'+
-    '<div style="text-align:center;margin:14px 0 4px">'+ring(58,'#B8860B',58)+
-      '<div class="cat watch">Worth discussing</div></div>'+
-    '<p class="sub" style="text-align:center;margin-bottom:10px">Highest current signals, so your clinician can focus the visit where it matters.</p>'+
-    '<div style="background:#fff;border:1px solid var(--line);border-radius:14px;padding:6px 14px">'+
-      sigrow('Hot flashes',80,'#B8860B')+
-      sigrow('Night sweats',70,'#B8860B')+
-      sigrow('Sleep onset difficulty',70,'#B8860B')+
-      sigrow('Brain fog',60,'#B8860B')+
-      sigrow('Stress sensitivity',60,'#B8860B')+
-    '</div>'+
+    '<h2 class="t" style="font-size:19px">Your symptoms, compared with your last mapping.</h2>'+
+    catPill(2)+
+    '<p class="sub" style="text-align:center;margin:10px 0">Hot flashes, night sweats and sleep are still where they were, so your clinician can focus the visit right there.</p>'+
+    rowsHtml([{n:'Hot flashes',t:2},{n:'Night sweats',t:2},{n:'Sleep onset difficulty',t:2},{n:'Brain fog',t:0},{n:'Stress sensitivity',t:1}])+
     '</div><div class="foot"><button class="btn btn-pk" onclick="next()">Next, memory and focus</button></div></div>';},
 
   think: function(){return '<div class="scr" data-i="9"><div class="pad">'+
     '<div class="ey">THINK, cognition</div>'+
     '<h2 class="t" style="font-size:19px">Memory, focus and processing speed.</h2>'+
-    '<div style="text-align:center;margin:16px 0 4px">'+ring(74,'#1A7A3B',74)+
-      '<div class="cat steady">Looking steady</div></div>'+
-    '<p class="sub" style="text-align:center;margin-bottom:10px">A short, game-like check that also gives your clinician an objective baseline to track.</p>'+
-    '<div style="background:#fff;border:1px solid var(--line);border-radius:14px;padding:6px 14px">'+
-      sigrow('Processing speed',76,'#1A7A3B')+
-      sigrow('Word retrieval',68,'#1A7A3B')+
-      sigrow('Working memory',75,'#1A7A3B')+
-      sigrow('Delayed recall',77,'#1A7A3B')+
-    '</div>'+
+    catPill(0)+
+    '<p class="sub" style="text-align:center;margin:10px 0">Your memory and processing speed have improved since your last mapping. A short, game-like check that gives your clinician an objective picture to follow.</p>'+
+    rowsHtml([{n:'Processing speed',t:0},{n:'Word retrieval',t:1},{n:'Working memory',t:1},{n:'Delayed recall',t:0}])+
     '</div><div class="foot"><button class="btn btn-pk" onclick="next()">Next, your senses</button></div></div>';},
 
   sense: function(){return '<div class="scr" data-i="10"><div class="pad">'+
     '<div class="ey">SENSE, the senses</div>'+
     '<h2 class="t" style="font-size:19px">Vision, hearing and balance.</h2>'+
-    '<div style="text-align:center;margin:16px 0 4px">'+ring(80,'#1A7A3B',80)+
-      '<div class="cat steady">Looking steady</div></div>'+
-    '<p class="sub" style="text-align:center;margin-bottom:10px">The transition can touch the senses too. A quick check keeps them in the picture.</p>'+
-    '<div style="background:#fff;border:1px solid var(--line);border-radius:14px;padding:6px 14px">'+
-      sigrow('Contrast',82,'#1A7A3B')+
-      sigrow('Color',84,'#1A7A3B')+
-      sigrow('Sound',78,'#1A7A3B')+
-      sigrow('Balance',77,'#1A7A3B')+
-    '</div>'+
+    catPill(1)+
+    '<p class="sub" style="text-align:center;margin:10px 0">Your senses have stayed steady. A quick check keeps them in the picture.</p>'+
+    rowsHtml([{n:'Contrast',t:1},{n:'Color',t:1},{n:'Sound',t:1},{n:'Balance',t:1}])+
     '</div><div class="foot"><button class="btn btn-pk" onclick="next()">See your full profile</button></div></div>';},
 
-  summary: function(){return '<div class="scr" data-i="11"><div class="pad">'+
-    '<div class="ey">Your Hormonal Profile</div>'+
-    '<h2 class="t" style="font-size:19px">Everything, in one picture.</h2>'+
-    '<div class="legend"><div class="li"><span class="d" style="background:#1A7A3B"></span><span><b>Looking steady</b> means you are doing well in this area.</span></div><div class="li"><span class="d" style="background:#B8860B"></span><span><b>Worth discussing</b> means it is worth raising at your visit.</span></div></div>'+
-    '<div class="mini">'+mdonut(58,'#B8860B',58)+'<div class="ml"><h4>Markable Index</h4><p>Overall hormonal signal</p></div>'+statusChip('watch')+'</div>'+
-    '<div class="mini">'+mdonut(62,'#B8860B',62)+'<div class="ml"><h4>Hormonal Imprint</h4><p>Facial patterns</p></div>'+statusChip('watch')+'</div>'+
-    '<div class="mini">'+mdonut(74,'#1A7A3B',74)+'<div class="ml"><h4>THINK</h4><p>Cognition</p></div>'+statusChip('steady')+'</div>'+
-    '<div class="mini">'+mdonut(80,'#1A7A3B',80)+'<div class="ml"><h4>SENSE</h4><p>Vision, hearing, balance</p></div>'+statusChip('steady')+'</div>'+
-    '<div class="mini">'+mdonut(58,'#B8860B','&bull;')+'<div class="ml"><h4>Symptom Burden</h4><p>Hot flashes, night sweats, sleep</p></div>'+statusChip('watch')+'</div>'+
+  summary: function(){
+    var mini=function(icon,title,desc,t){var v=TR[t];return '<div class="mini"><div class="mi" style="background:var(--wash)">'+icon+'</div><div class="ml"><h4>'+title+'</h4><p>'+desc+'</p></div><span class="mtag" style="background:'+v.color+'14;color:'+v.color+'">'+v.label+'</span></div>';};
+    return '<div class="scr" data-i="11"><div class="pad">'+
+    '<div class="ey">Since your last mapping</div>'+
+    '<h2 class="t" style="font-size:19px">What changed, in one picture.</h2>'+
+    '<p class="sub" style="margin:8px 0 12px"><b style="color:#1A7A3B">Your skin and cognitive signals are improving.</b> Sleep and hot flashes have not shifted, and they are worth raising at your visit.</p>'+
+    '<div class="legend"><div class="li"><span class="d" style="background:#1A7A3B"></span><span><b>Improving</b> has improved since your last mapping.</span></div><div class="li"><span class="d" style="background:#2E6BE6"></span><span><b>Stable</b> is staying in a good place.</span></div><div class="li"><span class="d" style="background:#B8860B"></span><span><b>No change</b> has not shifted, worth raising at your visit.</span></div></div>'+
+    mini(ICON.imprint,'Hormonal Imprint','Facial patterns',0)+
+    mini(ICON.symptoms,'Symptom map','Hot flashes, night sweats, sleep',2)+
+    mini(ICON.think,'THINK','Cognition',0)+
+    mini(ICON.sense,'SENSE','Vision, hearing, balance',1)+
     '</div><div class="foot"><button class="btn btn-pk" onclick="next()">See what your clinician receives</button></div></div>';},
 
   report: function(){
-    var rb=function(n,v){return '<div style="display:flex;align-items:center;justify-content:space-between;padding:7px 0;border-bottom:1px solid #f2f2f5"><span style="font-size:12.5px;color:#333;font-weight:600">'+n+'</span><span style="display:flex;align-items:center;gap:9px"><span style="width:74px;height:6px;border-radius:4px;background:#eee;overflow:hidden;display:inline-block"><i style="display:block;height:100%;width:'+(v*10)+'%;background:#B8860B;border-radius:4px"></i></span><b style="font-size:12.5px;color:#333;min-width:30px;text-align:right">'+v+'/10</b></span></div>';};
     var chip=function(t,bg,c){return '<span style="font-size:11px;font-weight:700;padding:5px 11px;border-radius:14px;background:'+bg+';color:'+c+'">'+t+'</span>';};
     return '<div class="scr" data-i="12"><div class="pad">'+
     '<div class="ey">Shared with your care team</div>'+
     '<h2 class="t" style="font-size:19px">A clear summary for '+CLINICIAN+'.</h2>'+
     '<p class="sub" style="margin:6px 0 10px">Your profile becomes a professional summary your clinician reads in seconds and can copy into your record.</p>'+
     '<div style="background:#fff;border:1px solid var(--line);border-radius:14px;padding:15px 16px;box-shadow:0 2px 12px rgba(0,0,0,.06)">'+
-      '<div style="display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid var(--navy);padding-bottom:9px;margin-bottom:11px"><img src="assets/markable-logo.png" style="height:15px"><span style="font-size:10px;color:#999;font-weight:600">Visit 1 &middot; prepared Jun 6</span></div>'+
+      '<div style="display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid var(--navy);padding-bottom:9px;margin-bottom:11px"><img src="assets/markable-logo.png" style="height:15px"><span style="font-size:10px;color:#999;font-weight:600">Visit 3 &middot; prepared Jun 6</span></div>'+
       '<div style="font-size:15px;font-weight:800;color:var(--navy)">'+NAME+' R. <span style="font-weight:500;color:#888;font-size:12px">&middot; Age 45</span></div>'+
       '<div style="display:flex;gap:22px;margin:11px 0 2px">'+
         '<div><div style="font-size:9px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--pk);margin-bottom:1px">Visit focus</div><div style="font-size:12.5px;color:#333;font-weight:600">Sleep and hot flashes</div></div>'+
-        '<div><div style="font-size:9px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--pk);margin-bottom:1px">Current therapy</div><div style="font-size:12.5px;color:#333;font-weight:600">None reported</div></div>'+
+        '<div><div style="font-size:9px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--pk);margin-bottom:1px">Current therapy (patient-reported)</div><div style="font-size:12.5px;color:#333;font-weight:600">Estradiol patch, micronized progesterone</div></div>'+
       '</div>'+
-      '<div style="font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--navy);margin:13px 0 2px;padding-top:9px;border-top:1px solid #f0f0f3">Symptom landscape</div>'+
-      rb('Hot flashes',8)+rb('Night sweats',7)+rb('Sleep onset difficulty',7)+rb('Brain fog',6)+rb('Stress sensitivity',6)+
+      '<div style="font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--navy);margin:13px 0 2px;padding-top:9px;border-top:1px solid #f0f0f3">Change since last mapping</div>'+
+      rowsHtml([{n:'Hot flashes',t:2},{n:'Night sweats',t:2},{n:'Sleep onset difficulty',t:2},{n:'Brain fog',t:0}]).replace('class="rows"','class="rows" style="border:none;padding:0;margin:0"')+
       '<div style="font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--navy);margin:13px 0 7px;padding-top:9px;border-top:1px solid #f0f0f3">Wellness signals</div>'+
       '<div style="display:flex;gap:6px;flex-wrap:wrap">'+
-        chip('Hormonal Imprint &middot; Moderate','#faf5f9','#B22F84')+
-        chip('THINK &middot; Typical','#eaf1fe','#2E6BE6')+
-        chip('SENSE &middot; Strong','#eaf5ee','#1A7A3B')+
+        chip('Hormonal Imprint &middot; Improving','#eaf5ee','#1A7A3B')+
+        chip('THINK &middot; Improving','#eaf5ee','#1A7A3B')+
+        chip('SENSE &middot; Stable','#eef4ff','#2E6BE6')+
       '</div>'+
       '<div style="font-size:9.5px;color:#a7a7b0;line-height:1.45;margin-top:13px;padding-top:9px;border-top:1px solid #f0f0f3">Summarizes patient-reported wellness data and observed patterns. Not medical advice or a clinical recommendation.</div>'+
     '</div>'+
-    '</div><div class="foot"><button class="btn btn-pk" onclick="next()">Finish</button></div></div>';},
+    '</div><div class="foot"><button class="btn btn-pk" onclick="next()">Next, between visits</button></div></div>';},
 
-  done: function(){return '<div class="scr" data-i="13"><div class="done">'+
+  between: function(){return '<div class="scr" data-i="13"><div class="pad">'+
+    '<div class="ey">Between visits</div>'+
+    '<h2 class="t" style="font-size:19px">Short check-ins keep your picture current.</h2>'+
+    '<p class="sub" style="margin:8px 0 4px">Between appointments, quick check-ins keep tracking how you feel, and '+CLINICIAN+' receives updates from you along the way.</p>'+
+    '<div class="alertcard" onclick="openUpdate()"><div style="flex:1"><div class="at">Your last check-in noted breast tenderness</div><div class="ad">Share an update with your clinic? It takes a few seconds.</div></div><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#b37400" stroke-width="2.5"><path d="M9 6l6 6-6 6"/></svg></div>'+
+    '<div class="steps">'+
+      '<div class="stp"><div class="n">1</div><div><h4>You choose what to share</h4><p>A short, structured update. You are always in control of what goes to the clinic.</p></div></div>'+
+      '<div class="stp"><div class="n">2</div><div><h4>Your clinic sees it before your next visit</h4><p>Routine updates are reviewed at the clinic, on their schedule.</p></div></div>'+
+      '<div class="stp"><div class="n">3</div><div><h4>They reach out if anything needs attention</h4><p>Every care decision stays with your clinic.</p></div></div>'+
+    '</div>'+
+    '</div><div class="foot"><button class="btn btn-pk" onclick="next()">Almost done</button>'+
+    '<div class="disc">Support only, not a substitute for your clinician\'s instructions.</div></div>'+
+
+    '<div class="uov" id="uov1"><div class="pad q">'+
+    '<div class="ey">Update your clinic</div>'+
+    '<h2 class="t" style="font-size:20px">Share an update with your clinic.</h2>'+
+    '<p class="sub" style="margin:6px 0 2px">A short update about a side effect or a change. Your clinic will see it before your next visit.</p>'+
+    '<h4>What is going on?</h4>'+
+    '<div class="chips">'+
+      '<div class="chip sel" onclick="pick(this)">Breast tenderness</div><div class="chip" onclick="pick(this)">Spotting or bleeding</div>'+
+      '<div class="chip" onclick="pick(this)">Nausea</div><div class="chip" onclick="pick(this)">Headache</div>'+
+      '<div class="chip" onclick="pick(this)">Bloating</div><div class="chip" onclick="pick(this)">Other</div>'+
+    '</div>'+
+    '<h4>How strong is it?</h4><div class="qrow"><div class="qopt sel" onclick="pick(this)">Mild</div><div class="qopt" onclick="pick(this)">Moderate</div><div class="qopt" onclick="pick(this)">Severe</div></div>'+
+    '<h4>When did it start?</h4><div class="qrow"><div class="qopt sel" onclick="pick(this)">This week</div><div class="qopt" onclick="pick(this)">Past two weeks</div><div class="qopt" onclick="pick(this)">Over a month</div></div>'+
+    '<div style="font-size:10.5px;color:#aaa;margin-top:14px">This is not an emergency channel. For anything urgent, call your clinic or 911.</div>'+
+    '</div><div class="foot"><button class="btn btn-pk" onclick="upStep(2)">Continue</button>'+
+    '<button class="btn btn-out" style="margin-top:10px" onclick="closeUpdate()">Cancel</button></div></div>'+
+
+    '<div class="uov" id="uov2"><div class="pad">'+
+    '<div class="ey">Context</div>'+
+    '<h2 class="t" style="font-size:20px">Helpful to know</h2>'+
+    '<div class="ctx"><div class="cx">Breast tenderness when starting hormone therapy is common, and for most women it eases within the first few months.</div>'+
+    '<div class="cn">General information, not medical advice. Every care decision stays with your clinic.</div></div>'+
+    '<p class="sub">You can send this update to your clinic, and they will see it before your next visit.</p>'+
+    '</div><div class="foot"><button class="btn btn-pk" onclick="upSend()">Send to my clinic</button>'+
+    '<button class="btn btn-out" style="margin-top:10px" onclick="closeUpdate()">No thanks</button></div></div>'+
+
+    '<div class="uov" id="uov3"><div class="pad" style="padding-top:22px">'+
+    '<div style="text-align:center"><div style="width:58px;height:58px;border-radius:16px;background:#e6f9f0;display:flex;align-items:center;justify-content:center;margin:0 auto 12px"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0a7c42" stroke-width="2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg></div>'+
+    '<h2 class="t" style="text-align:center;font-size:20px">Your update was sent.</h2></div>'+
+    '<p class="sub" style="text-align:center;margin:8px 0 4px">Routine updates like this are reviewed at the clinic. If anything needs attention, they will contact you.</p>'+
+    '<div class="ctx"><div class="cx" style="font-size:13px">Breast tenderness is a familiar early effect of hormone therapy, and for most women it settles on its own between the first weeks and about three months.</div>'+
+    '<div onclick="whyToggle()" style="font-size:12.5px;color:var(--pk);font-weight:700;margin-top:9px;cursor:pointer">Want to understand why this happens?</div>'+
+    '<div id="whyBox" style="display:none;font-size:12.5px;color:#555;line-height:1.6;margin-top:8px;padding-top:8px;border-top:1px solid #f0e3ee">Breast tissue responds to hormones. Early in therapy it can become more sensitive as it adjusts, and for most women the sensitivity fades within the first months. General information, not medical advice.</div></div>'+
+    '<div style="max-width:340px;margin:0 auto">'+
+      '<div class="sst ok"><span class="dot">&#10003;</span> Sent to your clinic</div>'+
+      '<div class="sst" id="ust2"><span class="dot" id="ust2d">&#9679;</span> <span id="ust2t">Being reviewed at the clinic...</span></div>'+
+      '<div class="sst"><span class="dot">&#9675;</span> If anything needs attention, they will contact you</div>'+
+    '</div>'+
+    '<p class="sub" style="font-size:12.5px;margin-top:12px">Keep logging how you feel, so the picture stays accurate.</p>'+
+    '<div style="font-size:10.5px;color:#aaa;margin-top:8px">This is not an emergency channel. For anything urgent, call your clinic or 911.</div>'+
+    '<div class="foot" style="padding:12px 0 0"><button class="btn btn-out" style="width:auto;padding:11px 26px;margin:0 auto" onclick="closeUpdate()">Back</button></div>'+
+    '</div></div>'+
+    '</div>';},
+
+  done: function(){return '<div class="scr" data-i="14"><div class="done">'+
     '<div class="ic"><svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#D1409C" stroke-width="2"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg></div>'+
     '<h2 class="t">You are ready for your visit, '+NAME+'.</h2>'+
-    '<p class="sub" style="margin:10px 0 4px">'+CLINICIAN+' will open your visit already knowing where you stand. Between now and your next check, your daily tools will keep the picture up to date.</p>'+
-    '<p class="sub" style="font-size:12px;color:#aaa;margin-top:18px">This is a wellness companion, not a medical device. For any health concern, your clinician is your best resource.</p>'+
-    '<button class="btn btn-out" style="margin-top:22px;width:auto;padding:11px 26px" onclick="go(0)">Replay the journey</button>'+
+    '<p class="sub" style="margin:10px 0 0">'+CLINICIAN+' will walk into the visit with your progress already in front of her. She receives updates from you along the way, and the full summary will be waiting for her before you meet.</p>'+
+    '<div style="text-align:left;max-width:300px;width:100%;margin:16px auto 0"><div style="font-size:13px;font-weight:800;color:var(--navy);margin-bottom:6px">Key topics for your visit</div>'+
+      '<div class="donetopic">1. Sleep</div><div class="donetopic">2. Hot flashes and night sweats</div><div class="donetopic">3. Keeping up what is improving</div></div>'+
+    '<div class="appt"><b>Your visit:</b> Monday, June 8, 2:30 PM<br>'+CLINICIAN+', '+CLINIC+'</div>'+
+    '<p class="sub" style="font-size:12px;color:#aaa;margin-top:16px">This is a wellness companion, not a medical device. For any health concern, your clinician is your best resource.</p>'+
+    '<button class="btn btn-out" style="margin-top:18px;width:auto;padding:11px 26px" onclick="go(0)">Replay the journey</button>'+
     '</div></div>';}
 };
 
@@ -432,6 +485,7 @@ function show(n,instant){
   });
   cur=n;
   updateChrome();
+  if(SCREENS[n].id!=='between')closeUpdate();
   // scan autoplay / pause on exit
   var v=document.getElementById('scanvid');
   if(v){ if(SCREENS[n].id==='scan'){v.currentTime=0;v.play().catch(function(){});} else {try{v.pause();}catch(e){}} }

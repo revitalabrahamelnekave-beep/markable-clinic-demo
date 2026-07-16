@@ -49,6 +49,8 @@ h1.t{font-size:23px;font-weight:800;color:var(--navy);letter-spacing:-.02em}
 
 /* inbox */
 .statchip{display:inline-flex;align-items:center;gap:8px;background:var(--wash);border:1px solid #f0d6e8;border-radius:10px;padding:9px 14px;font-size:13px;font-weight:600;color:var(--pk-deep);margin:14px 0 18px}
+.psec{font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--navy);margin:0 0 8px}
+.upnote{font-size:10px;color:#B8860B;margin-top:3px;text-align:right;white-space:nowrap}
 .statchip b{color:var(--navy)}
 .plist{border:1px solid var(--line);border-radius:14px;overflow:hidden}
 .prow{display:flex;align-items:center;gap:16px;padding:15px 18px;border-bottom:1px solid var(--line);transition:background .12s}
@@ -149,6 +151,21 @@ h1.t{font-size:23px;font-weight:800;color:var(--navy);letter-spacing:-.02em}
           <div class="eyebrow">Today, Feb 15</div>
           <h1 class="t">Your visits today</h1>
           <div class="statchip"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#B22F84" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg><b>3 of 4</b>&nbsp;patients completed their mapping before today's visits.</div>
+
+          <div class="psec">Patient updates (1)</div>
+          <div class="plist" style="margin-bottom:20px;border-color:#f1d3a1;background:#fffdf8">
+            <div class="prow">
+              <div class="pav" style="background:#B8860B">MR</div>
+              <div class="pinfo"><div class="pn">Maya R. <span style="font-weight:500;color:#888;font-size:12px">&middot; self-reported update</span></div><div class="pm">Breast tenderness &middot; mild &middot; started this week &middot; week 8 of hormone therapy</div></div>
+              <div style="text-align:right">
+                <span class="pbadge" style="background:#fbf4e6;color:#B8860B">Expected at this stage</span>
+                <div class="upnote">Usually settles within the first months</div>
+              </div>
+              <button class="reminder" onclick="reviewUpdate(this)">Mark as reviewed</button>
+            </div>
+          </div>
+
+          <div class="psec">Today's schedule</div>
           <div class="plist">
             <div class="prow ready" onclick="go(1)">
               <div class="pav">MR</div>
@@ -271,6 +288,7 @@ function go(n){
 function next(){go(cur+1);}
 function prev(){go(cur-1);}
 function sendReminder(b){b.textContent='Reminder sent';b.style.color='#1A7A3B';b.style.borderColor='#1A7A3B';b.style.background='#f0f9f3';b.disabled=true;b.style.cursor='default';}
+function reviewUpdate(b){b.textContent='Reviewed · patient notified';b.style.color='#1A7A3B';b.style.borderColor='#1A7A3B';b.style.background='#f0f9f3';b.disabled=true;b.style.cursor='default';}
 document.getElementById('jump').innerHTML=SCREENS.map(function(s,i){return '<div class="j" data-j="'+i+'" onclick="go('+i+')">'+(i+1)+'. '+s.l+'</div>';}).join('');
 go(0);
 document.addEventListener('keydown',function(e){if(/INPUT|TEXTAREA|SELECT/.test((e.target&&e.target.tagName)||''))return;if(e.key==='ArrowRight')next();if(e.key==='ArrowLeft')prev();});
