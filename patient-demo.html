@@ -89,6 +89,12 @@ h2.t{font-size:22px;font-weight:800;color:var(--navy);line-height:1.18;letter-sp
 .chip{padding:8px 12px;border-radius:16px;border:2px solid #eee;font-size:12px;font-weight:600;color:#555;cursor:pointer;transition:.15s}
 .chip.sel{border-color:var(--pk);background:var(--wash);color:var(--pk)}
 .inp{width:110px;padding:10px 12px;border-radius:10px;border:2px solid #eee;font-size:15px;font-weight:700;font-family:var(--font);text-align:center}
+/* symptom re-rating with previous-value anchor */
+.srev{background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px 12px;margin-bottom:8px}
+.srh{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;gap:8px}
+.srn{font-size:13.5px;font-weight:600;color:#333}
+.sra{font-size:10.5px;color:#a7a7b0;font-weight:700;white-space:nowrap}
+.sopt{padding:8px 4px;font-size:11.5px;border-radius:9px}
 
 /* scan */
 .scanfull{background:#000;height:100%;position:relative}
@@ -290,15 +296,20 @@ var V = {
     '</div>'+
     '</div><div class="foot"><button class="btn btn-pk" onclick="next()">Start face mapping</button></div></div>';},
 
-  scan: function(){return '<div class="scr" data-i="4"><div class="scanfull"><video id="scanvid" src="assets/scan-en.mp4" poster="assets/scan-poster.jpg" muted playsinline></video>'+
-    '<div style="position:absolute;left:0;right:0;bottom:0;padding:16px 18px;background:linear-gradient(transparent,rgba(0,0,0,.75))"><button class="btn btn-pk" onclick="next()">Continue</button></div></div></div>';},
+  scan: function(){return '<div class="scr" data-i="4"><div class="scanfull"><img src="assets/cover-face.jpeg" alt="Face mapping" style="width:100%;height:100%;object-fit:contain;background:#0c0c14">'+
+    '<div style="position:absolute;left:0;right:0;top:0;padding:14px 18px;background:linear-gradient(rgba(0,0,0,.7),transparent)"><div style="color:#fff;font-size:12px;font-weight:700;letter-spacing:.04em;display:flex;align-items:center;gap:7px"><span style="width:7px;height:7px;border-radius:50%;background:#D1409C;box-shadow:0 0 0 4px rgba(209,64,156,.3)"></span>Reading skin patterns across facial zones</div></div>'+
+    '<div style="position:absolute;left:0;right:0;bottom:0;padding:16px 18px;background:linear-gradient(transparent,rgba(0,0,0,.8))"><button class="btn btn-pk" onclick="next()">Continue</button></div></div></div>';},
 
   quest: function(){return '<div class="scr" data-i="5"><div class="pad q">'+
     '<div class="ey">While we read the signals in your photo</div>'+
     '<h2 class="t" style="font-size:19px">A few details to tailor this to you.</h2>'+
     '<h4>How old are you?</h4><input class="inp" id="age" type="number" min="18" max="99" placeholder="Age">'+
     '<h4>Have you had a menstrual period in the last 12 months?</h4>'+
-    '<div class="qrow"><div class="qopt" onclick="pick(this)">Yes</div><div class="qopt" onclick="pick(this)">No</div><div class="qopt" onclick="pick(this)">Not sure</div></div>'+
+    '<div class="qrow"><div class="qopt" onclick="pickPeriod(this)">Yes</div><div class="qopt" onclick="pickPeriod(this)">No</div><div class="qopt" onclick="pickPeriod(this)">Not sure</div></div>'+
+    '<div id="periodFollow" style="display:none">'+
+      '<h4>Roughly how long ago was your last period?</h4>'+
+      '<div class="qrow"><div class="qopt" onclick="pick(this)">1&ndash;2 years</div><div class="qopt" onclick="pick(this)">2&ndash;5 years</div><div class="qopt" onclick="pick(this)">Over 5 years</div></div>'+
+    '</div>'+
     '<h4>Which changes have you noticed lately?</h4>'+
     '<div class="chips">'+
       '<div class="chip" onclick="tg(this)">Night sweats</div><div class="chip" onclick="tg(this)">Sleep changes</div>'+
@@ -323,12 +334,22 @@ var V = {
     '<div class="legend" style="margin-top:12px"><div class="li"><span class="d" style="background:#1A7A3B"></span><span><b>Improving</b></span><span class="d" style="background:#2E6BE6;margin-left:10px"></span><span><b>Stable</b></span><span class="d" style="background:#B8860B;margin-left:10px"></span><span><b>No change</b></span></div><div class="li" style="margin-top:6px"><span style="color:#999">Each area is compared with your previous mapping.</span></div></div>'+
     '</div><div class="foot"><button class="btn btn-pk" onclick="next()">Next, your symptom map</button></div></div>';},
 
-  symptoms: function(){return '<div class="scr" data-i="8"><div class="pad">'+
+  symptoms: function(){
+    var scale=['None','Mild','Moderate','Severe'];
+    var list=[
+      {n:'Hot flashes',p:2},{n:'Night sweats',p:2},{n:'Sleep onset difficulty',p:2},
+      {n:'Brain fog',p:1},{n:'Stress sensitivity',p:1},{n:'Mood changes',p:1},
+      {n:'Low energy',p:1},{n:'Palpitations',p:0},{n:'Joint aches',p:0}
+    ];
+    var rows=list.map(function(s){
+      var opts=scale.map(function(lb,i){return '<div class="qopt sopt'+(i===s.p?' sel':'')+'" onclick="pick(this)">'+lb+'</div>';}).join('');
+      return '<div class="srev"><div class="srh"><span class="srn">'+s.n+'</span><span class="sra">Last time: '+scale[s.p]+'</span></div><div class="qrow">'+opts+'</div></div>';
+    }).join('');
+    return '<div class="scr" data-i="8"><div class="pad">'+
     '<div class="ey">Symptom map</div>'+
-    '<h2 class="t" style="font-size:19px">Your symptoms, compared with your last mapping.</h2>'+
-    catPill(2)+
-    '<p class="sub" style="text-align:center;margin:10px 0">Hot flashes, night sweats and sleep are still where they were, so your clinician can focus the visit right there.</p>'+
-    rowsHtml([{n:'Hot flashes',t:2},{n:'Night sweats',t:2},{n:'Sleep onset difficulty',t:2},{n:'Brain fog',t:0},{n:'Stress sensitivity',t:1}])+
+    '<h2 class="t" style="font-size:19px">Let\'s go through each symptom.</h2>'+
+    '<p class="sub" style="margin:6px 0 12px">Your last rating is already filled in. We check every symptom each time, including the ones that were quiet before, so nothing new slips through. Adjust anything that changed.</p>'+
+    rows+
     '</div><div class="foot"><button class="btn btn-pk" onclick="next()">Next, memory and focus</button></div></div>';},
 
   think: function(){return '<div class="scr" data-i="9"><div class="pad">'+
@@ -417,7 +438,7 @@ var V = {
     '<div class="uov" id="uov2"><div class="pad">'+
     '<div class="ey">Context</div>'+
     '<h2 class="t" style="font-size:20px">Helpful to know</h2>'+
-    '<div class="ctx"><div class="cx">Breast tenderness when starting hormone therapy is common, and for most women it eases within the first few months.</div>'+
+    '<div class="ctx"><div class="cx">Breast tenderness when starting hormone therapy is common, and for most women it eases within the first few months. If it is severe or persists, mention it to your clinician.</div>'+
     '<div class="cn">General information, not medical advice. Every care decision stays with your clinic.</div></div>'+
     '<p class="sub">You can send this update to your clinic, and they will see it before your next visit.</p>'+
     '</div><div class="foot"><button class="btn btn-pk" onclick="upSend()">Send to my clinic</button>'+
@@ -457,6 +478,7 @@ var V = {
 var cs=[false,false,false];
 function tc(i){cs[i]=!cs[i];document.getElementById('cb'+i).className='cbox'+(cs[i]?' on':'');document.getElementById('cbtn').disabled=!(cs[0]&&cs[2]);}
 function pick(el){[].forEach.call(el.parentNode.children,function(c){c.classList.remove('sel')});el.classList.add('sel');}
+function pickPeriod(el){pick(el);var f=document.getElementById('periodFollow');if(f)f.style.display=(el.textContent.trim()==='No')?'block':'none';}
 function tg(el){el.classList.toggle('sel');}
 
 function render(){
