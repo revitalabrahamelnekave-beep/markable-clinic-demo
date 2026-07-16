@@ -228,66 +228,19 @@ h1.t{font-size:23px;font-weight:800;color:var(--navy);letter-spacing:-.02em}
           </div>
         </div>
 
-        <!-- SCREEN 1: CLINICIAN REPORT (summary-to-copy at top, full report below) -->
-        <div class="scr" data-i="1">
-          <div class="crumb" onclick="go(0)"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg> Today's visits</div>
-
-          <div class="copybox">
-            <h3>Summary to copy to the medical record</h3>
-            <div class="copyline"><b>CC / HPI:</b> Follow-up visit #3. Patient reports persistent hot flashes (8/10), worsening sleep onset (7/10), and ongoing night sweats (7/10).</div>
-            <div class="copyline"><b>Current medications (patient-reported):</b> Transdermal estradiol 0.05 mg/day + micronized progesterone 200 mg. Adherence 96%.</div>
-            <div class="copyline"><b>MARKABLE tracking:</b> High symptom burden, predominantly in the vasomotor and sleep clusters. Digital follow-up signals show mild improvement in reaction time and verbal memory since the last visit.</div>
-            <button class="copybtn" onclick="copyRecord()"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 012-2h8"/></svg> Copy to clipboard</button>
-            <div style="clear:both"></div>
-          </div>
-
-          <div class="rep">
-            <div class="rep-hd"><div class="lg"><img src="assets/markable-logo.png" alt="MARKABLE"><span class="ti">Intake and Follow-up Report</span></div><span class="dt">Jun 6, 2026</span></div>
-            <div class="rep-pt"><span class="nm">Maya R.</span><span class="mi">Age 45</span><span class="mi">Visit 3</span><span class="mi">Estradiol 0.05 mg + Progesterone 200 mg</span><span class="adh">Adherence 96%</span></div>
-
-            <div class="rep-h">Top concerns right now (patient-reported)</div>
-            <div class="bothers">
-              <div class="bcard" style="background:#fdeef5"><div class="bn">Hot flashes</div><div class="bv" style="color:#C0392B">8/10</div><div class="bt">Persistent</div></div>
-              <div class="bcard" style="background:#fdf2e8"><div class="bn">Sleep onset</div><div class="bv" style="color:#C0392B">7/10</div><div class="bt">&uarr; Worsening</div></div>
-              <div class="bcard" style="background:#fff6e6"><div class="bn">Night sweats</div><div class="bv" style="color:#B8860B">7/10</div><div class="bt">Persistent</div></div>
-            </div>
-
-            <div class="repcols">
-              <div>
-                <div class="rep-h">Symptom burden by cluster</div>
-                <div class="cl"><span class="cn">Vasomotor</span><div class="cbar"><i style="width:80%;background:#C0392B"></i></div><span class="csc">8</span></div>
-                <div class="cl"><span class="cn">Sleep</span><div class="cbar"><i style="width:70%;background:#E07B39"></i></div><span class="csc">7</span></div>
-                <div class="cl"><span class="cn">Mood</span><div class="cbar"><i style="width:50%;background:#D9A400"></i></div><span class="csc">5</span></div>
-                <div class="cl"><span class="cn">Urogenital</span><div class="cbar"><i style="width:40%;background:#C9A227"></i></div><span class="csc">4</span></div>
-                <div class="cl"><span class="cn">Cognitive</span><div class="cbar"><i style="width:40%;background:#8FA31E"></i></div><span class="csc">4</span></div>
-                <div class="cl"><span class="cn">Musculoskeletal</span><div class="cbar"><i style="width:30%;background:#1A7A3B"></i></div><span class="csc">3</span></div>
-                <div class="clnote">Cluster scores 0&ndash;10, patient-reported. Corresponds to a Menopause Rating Scale total of 20/44 (severe band on the MRS).</div>
-              </div>
-              <div>
-                <div class="rep-h">Additional MARKABLE signals</div>
-                <div class="fnd"><span class="fn">Reaction time</span><span class="fv" style="color:#1A7A3B">Mild improvement</span></div>
-                <div class="fnd"><span class="fn">Verbal memory</span><span class="fv" style="color:#1A7A3B">Improved</span></div>
-                <div class="fnd"><span class="fn">Sustained attention</span><span class="fv" style="color:#666">Stable</span></div>
-                <div class="fnd"><span class="fn">Hormonal Imprint (facial signals)</span><span class="fv" style="color:#1A7A3B">Improving</span></div>
-                <div class="clnote">Wellness signals from the mapping, for awareness and tracking. Not a hormone measurement.</div>
-              </div>
-            </div>
-
-            <div class="rep-h">Adherence (patient-reported)</div>
-            <div class="adhbar"><span class="lb">96%</span><div class="track"><i style="width:96%">96%</i></div><span class="dd">52 / 54 doses</span></div>
-
-            <div class="repfoot">This information is intended to support clinical discussion and does not constitute a diagnosis or treatment recommendation.</div>
-          </div>
-
-          <div class="foot"><button class="btn btn-pk" onclick="copyRecord()">Copy to the medical record</button><button class="btn btn-ghost" onclick="go(0)">Back to today's visits</button></div>
+        <!-- SCREEN 1: CLINICIAN REPORT (embeds the standalone, vetted report) -->
+        <div class="scr" data-i="1" style="padding:14px 16px 16px">
+          <div class="crumb" onclick="go(0)" style="margin-bottom:10px"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg> Today's visits &middot; Maya R.</div>
+          <iframe src="dr-report.html" title="Maya R. clinician report" style="width:100%;height:calc(100vh - 190px);min-height:500px;border:1px solid var(--line);border-radius:12px;background:#eceef3;display:block"></iframe>
+          <div class="foot"><button class="btn btn-pk" onclick="go(2)">Reviewed &amp; added to chart</button><button class="btn btn-ghost" onclick="go(0)">Back to today's visits</button></div>
         </div>
 
         <!-- SCREEN 2: CONFIRMATION -->
         <div class="scr" data-i="2">
           <div class="done">
             <div class="ic"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#1A7A3B" stroke-width="2"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg></div>
-            <h1 class="t">Copied for the record.</h1>
-            <p class="sub" style="margin:10px 0 4px;max-width:460px">Paste it into Maya's record whenever you like. You are ready for the 2:30 visit: Maya arrives already mapped, so the appointment opens on her care.</p>
+            <h1 class="t">Added to Maya's chart.</h1>
+            <p class="sub" style="margin:10px 0 4px;max-width:460px">The summary is in her record. You are ready for the 2:30 visit: Maya arrives already mapped, so the appointment opens on her care.</p>
             <div class="foot" style="justify-content:center"><button class="btn btn-pk" onclick="go(0)">Back to today's visits</button><a class="btn btn-ghost" href="index.html">Demo home</a></div>
           </div>
         </div>
