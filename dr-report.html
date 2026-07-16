@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>MARKABLE Clinician Report</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --pk:#D1409C;--pk-deep:#B22F84;--navy:#1a1a2e;--ink:#22222e;--muted:#5c5c6e;--faint:#8a8a94;
+  --line:#e7e7ee;--line-soft:#f1f1f5;
+  --green:#1A7A3B;--blue:#2E6BE6;--amber:#B8860B;--red:#C0392B;
+  --wash:#faf5f9;--font:'Inter',-apple-system,system-ui,Segoe UI,sans-serif;
+  --shadow:0 1px 2px rgba(20,20,45,.05),0 8px 24px rgba(20,20,45,.06);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{background:#eceef3;font-family:var(--font);color:var(--ink);padding:26px 16px 48px;line-height:1.5;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+.page{max-width:900px;margin:0 auto}
+
+/* ---- colorblind-safe severity markers: shape + color, never color alone ---- */
+.sev{display:inline-block;flex:none;width:8px;height:8px;margin-right:6px;vertical-align:baseline}
+.sev.hi{background:var(--red);clip-path:polygon(50% 0,100% 100%,0 100%)}      /* triangle = high */
+.sev.mod{background:var(--amber);clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%)} /* diamond = moderate */
+.sev.good{background:var(--green);border-radius:50%}                          /* circle = low / good */
+.sev.neu{background:var(--faint);border-radius:50%}                           /* gray circle = neutral / not applicable */
+
+/* ---- AT A GLANCE (bottom line) : most assertive element ---- */
+.bl{position:relative;background:linear-gradient(135deg,#1a1a2e 0%,#272740 100%);color:#fff;border-radius:14px;padding:17px 20px 17px 24px;margin-bottom:14px;display:flex;gap:15px;align-items:flex-start;box-shadow:var(--shadow);overflow:hidden}
+.bl::before{content:"";position:absolute;left:0;top:0;bottom:0;width:6px;background:var(--pk)}
+.bl .tag{flex:none;font-size:9.5px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;background:var(--pk);color:#fff;padding:6px 11px;border-radius:8px;margin-top:2px;line-height:1.25;text-align:center}
+.bl .txt{font-size:15px;line-height:1.55;font-weight:600;letter-spacing:-.005em}
+.bl .txt b{color:#ffd4ee;font-weight:800}
+
+/* ---- COPY TO EHR ---- */
+.copybox{background:#f6f7fb;border:1px solid var(--line);border-radius:14px;padding:17px 20px 18px;margin-bottom:16px;box-shadow:var(--shadow)}
+.copybox h3{font-size:11.5px;font-weight:800;color:var(--pk);margin-bottom:12px;display:flex;align-items:center;gap:9px;text-transform:uppercase;letter-spacing:.05em}
+.copybox h3 .z{font-size:9px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;background:#eaf5ee;color:var(--green);padding:3px 8px;border-radius:6px}
+.copyline{font-size:12.5px;color:#40404c;line-height:1.6;margin-bottom:6px}
+.copyline b{color:var(--navy);font-weight:700}
+.copybtn{margin-top:14px;float:right;display:inline-flex;align-items:center;gap:7px;background:var(--pk);color:#fff;border:none;border-radius:9px;padding:10px 16px;font-family:var(--font);font-size:12.5px;font-weight:700;cursor:pointer;box-shadow:0 2px 8px rgba(209,64,156,.28);transition:transform .1s}
+.copybtn:hover{background:var(--pk-deep)}
+.copybtn:active{transform:scale(.97)}
+
+/* ---- REPORT SHEET (letterhead) ---- */
+.rep{background:#fff;border:1px solid var(--line);border-radius:16px;padding:24px 26px 22px;box-shadow:var(--shadow)}
+.rep-hd{display:flex;align-items:center;justify-content:space-between;border-bottom:2.5px solid var(--pk);padding-bottom:12px;margin-bottom:14px;flex-wrap:wrap;gap:8px}
+.rep-hd .lg{display:flex;align-items:center;gap:13px}
+.rep-hd .lg .mk{font-size:17px;font-weight:900;color:var(--pk);letter-spacing:.03em}
+.rep-hd .ti{font-size:14px;font-weight:800;color:var(--navy);padding-left:13px;border-left:1px solid var(--line)}
+.rep-hd .dt{font-size:11.5px;color:var(--muted);font-weight:500}
+.idrow{display:flex;flex-wrap:wrap;align-items:center;gap:6px 0;padding-bottom:13px;border-bottom:1px solid var(--line);margin-bottom:15px}
+.idrow .f{font-size:12px;color:var(--muted);padding:0 13px;border-right:1px solid var(--line);line-height:1.25}
+.idrow .f:first-child{padding-left:0}
+.idrow .f b{color:var(--navy);font-weight:700}
+.idrow .adh{margin-left:auto;font-size:11px;font-weight:800;color:var(--green);white-space:nowrap;background:#eaf5ee;padding:5px 12px;border-radius:20px;display:inline-flex;align-items:center;gap:6px}
+.idrow .adh::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--green);flex:none}
+
+/* ---- section headers ---- */
+.sec-h{font-size:11px;font-weight:800;color:var(--pk);letter-spacing:.06em;margin:0 0 12px;text-transform:uppercase;display:flex;align-items:center;gap:9px}
+.sec-h::before{content:"";width:15px;height:2.5px;background:var(--pk);border-radius:2px;flex:none}
+.block{margin-bottom:22px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+
+/* ---- top-3 concern cards ---- */
+.bothers{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+.bcard{border:1px solid var(--line);border-left:4px solid var(--faint);border-radius:12px;padding:13px 14px 12px;position:relative;background:#fff}
+.bcard.hi{border-left-color:var(--red);background:#fdf2f6}
+.bcard.mod{border-left-color:var(--amber);background:#fff8ec}
+.bcard .rk{position:absolute;top:10px;right:11px;font-size:9px;font-weight:800;color:#fff;background:var(--navy);border-radius:20px;padding:2px 8px;letter-spacing:.04em}
+.bcard .bn{font-size:12.5px;font-weight:700;color:var(--navy);margin-top:2px}
+.bcard .bv{font-size:27px;font-weight:800;margin:4px 0 3px;display:flex;align-items:center;gap:8px;line-height:1;color:var(--navy)}
+.bcard.hi .bv{color:var(--red)}
+.bcard.mod .bv{color:var(--amber)}
+.bcard .bv .sev{width:12px;height:12px;margin-right:0}
+.bcard .bt{font-size:10.5px;color:var(--muted);line-height:1.4}
+
+/* ---- bleeding / safety flag : second most assertive element ---- */
+.flag{position:relative;border:1px solid #efc79b;border-left:5px solid var(--amber);background:linear-gradient(180deg,#fffaf2 0%,#fff6e9 100%);border-radius:12px;padding:15px 18px;box-shadow:0 3px 14px rgba(184,134,11,.10)}
+.flag .fh{display:flex;align-items:center;gap:10px;font-size:13.5px;font-weight:800;color:#8a4f0c;margin-bottom:10px}
+.flag .fh svg{flex:none;width:28px;height:28px;background:#fdeccb;border-radius:8px;padding:5px;box-sizing:border-box}
+.flag .fact{font-size:12.5px;color:#3c3c48;line-height:1.6;padding:3px 0}
+.flag .fact b{color:var(--navy);font-weight:700}
+.flag .thr{font-size:11.5px;color:#7a4e10;line-height:1.6;margin-top:9px;padding-top:9px;border-top:1px dashed #e6c091}
+
+/* ---- visit agenda ---- */
+.agenda{background:var(--wash);border:1px solid #f0e0ec;border-radius:12px;padding:4px 16px}
+.ag{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-bottom:1px solid #f2e6ef;font-size:12.5px;color:#3c3c48;line-height:1.5}
+.ag:last-child{border-bottom:none}
+.ag .q{flex:none;width:20px;height:20px;border-radius:50%;background:var(--pk);color:#fff;font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;margin-top:1px}
+
+/* ---- side-effects table ---- */
+.tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.tbl{width:100%;border-collapse:collapse;font-size:12px;min-width:340px}
+.tbl th{text-align:left;font-size:9.5px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--faint);padding:6px 9px;border-bottom:1.5px solid var(--line)}
+.tbl td{padding:9px 9px;border-bottom:1px solid var(--line-soft);color:#3c3c48;vertical-align:middle}
+.tbl tr:last-child td{border-bottom:none}
+.tbl td.se{font-weight:700;color:var(--navy)}
+.pill{font-size:10px;font-weight:800;padding:3px 9px 3px 8px;border-radius:20px;white-space:nowrap;display:inline-flex;align-items:center;gap:6px;letter-spacing:.02em}
+.pill::before{content:"";width:6px;height:6px;flex:none}
+.pill.good{background:#eaf5ee;color:var(--green)}
+.pill.good::before{background:var(--green);border-radius:50%}
+.pill.mod{background:#fff6e6;color:var(--amber)}
+.pill.mod::before{background:var(--amber);clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%)}
+
+/* ---- change-since-therapy deltas ---- */
+.chg{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:1px solid var(--line-soft)}
+.chg .cn{font-size:12.5px;color:var(--ink);font-weight:600}
+.chg .cv{font-size:12px;font-weight:800;display:inline-flex;align-items:center;white-space:nowrap}
+.chg .cv.hi{color:var(--red)}
+.chg .cv.mod{color:var(--amber)}
+.chg .cv.good{color:var(--green)}
+
+/* ---- symptom clusters ---- */
+.cl{display:flex;align-items:center;gap:9px;padding:6px 0}
+.cl .cn{font-size:12.5px;color:var(--ink);font-weight:600;width:110px;flex:none}
+.cl .csc{font-size:12px;font-weight:800;color:var(--navy);width:30px;text-align:right;flex:none}
+.cl .cbar{flex:1;height:8px;border-radius:5px;background:#ececef;overflow:hidden}
+.cl .cbar i{display:block;height:100%;border-radius:5px}
+
+/* ---- GSM panel ---- */
+.gsm .g{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:8px 0;border-bottom:1px solid var(--line-soft)}
+.gsm .g:last-child{border-bottom:none}
+.gsm .gn{font-size:12.5px;color:var(--ink);font-weight:600}
+.gsm .gn .sub{font-size:10.5px;color:var(--muted);font-weight:500}
+.gsm .gv{font-size:12px;font-weight:800;display:inline-flex;align-items:center;white-space:nowrap}
+.gsm .gv.hi{color:var(--red)}
+.gsm .gv.mod{color:var(--amber)}
+.gsm .gv.neu{color:var(--muted);font-weight:700}
+
+/* ---- context notes ---- */
+.ctxnote{background:#f6f7fb;border:1px solid var(--line);border-radius:10px;padding:11px 14px;font-size:11px;color:var(--muted);line-height:1.6;margin-top:12px}
+.ctxnote b{color:var(--navy)}
+.note{font-size:10.5px;color:var(--faint);margin-top:10px;line-height:1.55}
+.oneline{font-size:12px;color:#444;line-height:1.6;background:#fafafb;border:1px solid var(--line);border-radius:10px;padding:12px 15px;border-left:4px solid var(--faint)}
+.oneline b{color:var(--navy)}
+
+.repfoot{font-size:10.5px;color:var(--faint);text-align:center;margin-top:18px;padding-top:13px;border-top:1px solid var(--line);line-height:1.6}
+
+@media(max-width:640px){
+  body{padding:18px 12px 36px}
+  .rep{padding:18px 16px}
+  .bothers{grid-template-columns:1fr}
+  .two{grid-template-columns:1fr;gap:18px}
+  .bl .txt{font-size:14px}
+  .rep-hd .ti{padding-left:0;border-left:none}
+}
+@media print{
+  body{background:#fff;padding:0;font-size:11px}
+  .page{max-width:100%}
+  .rep,.copybox,.bl,.flag,.copybtn{box-shadow:none}
+  .bl,.copybox,.rep{border-radius:0}
+  .copybtn{display:none}
+  .rep{border:none;padding:6px 0}
+  .block,.bcard,.flag,.two,.tbl,.agenda{break-inside:avoid;page-break-inside:avoid}
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- BOTTOM LINE -->
+  <div class="bl">
+    <span class="tag">At a glance<br><span style="font-weight:600;font-size:8px;letter-spacing:.02em;opacity:.75">all patient-reported</span></span>
+    <span class="txt">Week 8 of hormone therapy, high self-reported adherence. Most bothersome: <b>hot flashes (little change since start)</b> and <b>worsening sleep</b>. <b>Unscheduled spotting since week 3, ongoing.</b> She wants to discuss the spotting, a possible dose change, and vaginal and urinary symptoms she has not raised before.</span>
+  </div>
+
+  <!-- COPY TO EHR -->
+  <div class="copybox">
+    <h3>Summary to copy to the medical record <span class="z">paste-ready</span></h3>
+    <div class="copyline"><b>Pt:</b> Maya R., 45yo, perimenopausal (LMP ~3 mo ago, cycles irregular), uterus intact. Follow-up visit #3, week 8 of HT.</div>
+    <div class="copyline"><b>Regimen (patient-reported):</b> Transdermal estradiol 0.05 mg/24h patch twice weekly + micronized progesterone 100 mg nightly (continuous combined), started Apr 13 2026. High self-reported adherence (~2 missed doses in 8 weeks).</div>
+    <div class="copyline"><b>HPI:</b> Persistent hot flashes (bother 8/10, ~6/day, 2 night awakenings) and worsening sleep onset (7/10) most bothersome; ongoing night sweats. Vasomotor symptoms changed little over 8 weeks.</div>
+    <div class="copyline"><b>Bleeding:</b> Unscheduled light spotting since week 3, intermittent, non-postcoital, ongoing ~5 weeks. No heavy bleeding reported.</div>
+    <div class="copyline"><b>Genitourinary (patient-reported):</b> Vaginal dryness 5/10, entry dyspareunia with avoidance, low desire, urinary urgency + nocturia x2. No local vaginal estrogen in use.</div>
+    <div class="copyline"><b>Other side effects:</b> Mild breast tenderness (wk 2, easing); bloating (resolved).</div>
+    <div class="copyline"><b>Risk flags (patient-reported):</b> No VTE, breast/endometrial cancer, or migraine with aura; non-smoker. BP/BMI not captured here.</div>
+    <div class="copyline"><b>To capture at visit:</b> BP, BMI, last mammogram (not captured by the app).</div>
+    <div class="copyline"><b>Patient's agenda:</b> is the spotting a concern; adjust dose for hot flashes; help for vaginal/urinary symptoms; when will sleep improve.</div>
+    <button class="copybtn" onclick="copyRecord()"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 012-2h8"/></svg> Copy to clipboard</button>
+    <div style="clear:both"></div>
+  </div>
+
+  <div class="rep">
+    <div class="rep-hd"><div class="lg"><span class="mk">MARKABLE</span><span class="ti">Intake &amp; Follow-up Report</span></div><span class="dt">Jun 6, 2026 &middot; scores reflect the past 7 days</span></div>
+    <div class="idrow">
+      <span class="f"><b>Maya R.</b></span><span class="f">Age 45</span><span class="f">Perimenopausal &middot; LMP ~3 mo</span><span class="f">Uterus intact</span><span class="f">Visit 3 &middot; week 8 of HT</span>
+      <span class="adh">Adherence: high (self-reported)</span>
+    </div>
+    <div class="note" style="margin:-6px 0 15px">All symptom scores are self-reported bother, 0 (best) to 10 (worst), over the past 7 days.</div>
+
+    <!-- TOP CONCERNS -->
+    <div class="block">
+      <div class="sec-h">What bothers her most right now (patient-ranked)</div>
+      <div class="bothers">
+        <div class="bcard hi"><span class="rk">#1</span><div class="bn">Hot flashes</div><div class="bv"><span class="sev hi"></span>8/10</div><div class="bt">~6/day &middot; little change since start</div></div>
+        <div class="bcard hi"><span class="rk">#2</span><div class="bn">Sleep onset</div><div class="bv"><span class="sev hi"></span>7/10</div><div class="bt">&uarr; Worsening &middot; wakes x2/night</div></div>
+        <div class="bcard mod"><span class="rk">#3</span><div class="bn">Vaginal &amp; urinary</div><div class="bv"><span class="sev mod"></span>5/10</div><div class="bt">Dryness, pain, urgency &middot; no local therapy reported</div></div>
+      </div>
+    </div>
+
+    <!-- BLEEDING / SAFETY FLAG -->
+    <div class="block">
+      <div class="sec-h">Bleeding &mdash; patient-reported facts for your attention</div>
+      <div class="flag">
+        <div class="fh"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#c0700f" stroke-width="2.2"><path d="M12 9v4M12 17h.01"/><path d="M10.3 3.9l-8 14A2 2 0 004 21h16a2 2 0 001.7-3l-8-14a2 2 0 00-3.4 0z"/></svg> Unscheduled bleeding on continuous combined therapy</div>
+        <div class="fact"><b>Pattern:</b> light spotting, started week 3, intermittent, non-postcoital, ongoing about 5 weeks. No heavy bleeding or clots reported.</div>
+        <div class="fact"><b>Context:</b> she is perimenopausal with a uterus, on continuous combined estradiol + progesterone.</div>
+        <div class="fact"><b>Regimen note:</b> continuous micronized progesterone 100 mg nightly is a commonly used endometrial-protection regimen with standard-dose transdermal estradiol. General information only.</div>
+        <div class="thr">Unscheduled spotting in the first 3&ndash;6 months of continuous combined therapy is common and often settles. Persistent or unexplained unscheduled bleeding is also a recognized reason clinicians choose to evaluate sooner. General guidance (ACOG / The Menopause Society) considers evaluation for bleeding that persists beyond ~6 months, any heavy or postcoital bleeding, or bleeding after a bleed-free interval. Shared as general information; whether and when to investigate is your judgment.</div>
+      </div>
+    </div>
+
+    <!-- CHANGE SINCE THERAPY + VISIT AGENDA -->
+    <div class="block two">
+      <div>
+        <div class="sec-h">Change since starting therapy (patient-reported, 8 weeks)</div>
+        <div class="chg"><span class="cn">Hot flashes</span><span class="cv hi"><span class="sev hi"></span>little change (8&rarr;8)</span></div>
+        <div class="chg"><span class="cn">Night sweats</span><span class="cv mod"><span class="sev mod"></span>little change (8&rarr;7)</span></div>
+        <div class="chg"><span class="cn">Sleep onset</span><span class="cv hi"><span class="sev hi"></span>worse (6&rarr;7)</span></div>
+        <div class="chg"><span class="cn">Brain fog</span><span class="cv good"><span class="sev good"></span>better (6&rarr;4)</span></div>
+        <div class="chg"><span class="cn">Mood</span><span class="cv good"><span class="sev good"></span>better (7&rarr;5)</span></div>
+        <div class="ctxnote"><b>General context (not specific to this patient):</b> hot-flash relief often builds over the first several weeks, with fuller effect commonly by around 12 weeks; response varies with dose, route and absorption, and patch adhesion or application site can affect delivery. Her scores are self-reported bother, not a measured response.</div>
+      </div>
+      <div>
+        <div class="sec-h">What she wants to talk about at this visit</div>
+        <div class="agenda">
+          <div class="ag"><span class="q">1</span><span>Is the spotting since week 3 something to worry about?</span></div>
+          <div class="ag"><span class="q">2</span><span>The hot flashes have not eased. Should we adjust the dose?</span></div>
+          <div class="ag"><span class="q">3</span><span>Vaginal dryness and pain with sex, and needing to pee at night.</span></div>
+          <div class="ag"><span class="q">4</span><span>When can she expect her sleep to start improving?</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- GSM PANEL -->
+    <div class="block">
+      <div class="sec-h">Genitourinary &amp; sexual health (patient-reported)</div>
+      <div class="two gsm">
+        <div>
+          <div class="g"><span class="gn">Vaginal dryness</span><span class="gv mod"><span class="sev mod"></span>5/10</span></div>
+          <div class="g"><span class="gn">Pain with sex <span class="sub">&middot; at entry</span></span><span class="gv hi"><span class="sev hi"></span>Present, avoids</span></div>
+          <div class="g"><span class="gn">Desire / libido</span><span class="gv mod"><span class="sev mod"></span>Low</span></div>
+        </div>
+        <div>
+          <div class="g"><span class="gn">Urinary urgency</span><span class="gv mod"><span class="sev mod"></span>Frequent</span></div>
+          <div class="g"><span class="gn">Nocturia</span><span class="gv mod"><span class="sev mod"></span>x2/night</span></div>
+          <div class="g"><span class="gn">Local vaginal estrogen</span><span class="gv neu"><span class="sev neu"></span>None reported</span></div>
+        </div>
+      </div>
+      <div class="note">Nocturia overlaps her sleep-onset complaint. Genitourinary symptoms of menopause can persist even when systemic symptoms improve. Patient-reported; any management decision is yours.</div>
+    </div>
+
+    <!-- SIDE EFFECTS + CLUSTERS -->
+    <div class="block two">
+      <div>
+        <div class="sec-h">Side effects since starting therapy (patient-reported)</div>
+        <div class="tbl-wrap">
+        <table class="tbl">
+          <thead><tr><th>Effect</th><th>Since</th><th>Often</th><th>Intensity</th><th>Trend</th></tr></thead>
+          <tbody>
+            <tr><td class="se">Breast tenderness</td><td>Wk 2</td><td>Most days</td><td>Mild</td><td><span class="pill good">Easing</span></td></tr>
+            <tr><td class="se">Spotting</td><td>Wk 3</td><td>Intermittent</td><td>Light</td><td><span class="pill mod">Ongoing</span></td></tr>
+            <tr><td class="se">Bloating</td><td>Wk 1</td><td>Occasional</td><td>Mild</td><td><span class="pill good">Resolved</span></td></tr>
+            <tr><td class="se">Leg pain / swelling</td><td>&mdash;</td><td>None</td><td>&mdash;</td><td><span class="pill good">None</span></td></tr>
+            <tr><td class="se">New / aura headache</td><td>&mdash;</td><td>None</td><td>&mdash;</td><td><span class="pill good">None</span></td></tr>
+          </tbody>
+        </table>
+        </div>
+      </div>
+      <div>
+        <div class="sec-h">Symptom burden by cluster (patient-reported)</div>
+        <div class="cl"><span class="sev hi"></span><span class="cn">Vasomotor</span><div class="cbar"><i style="width:80%;background:#C0392B"></i></div><span class="csc">8/10</span></div>
+        <div class="cl"><span class="sev hi"></span><span class="cn">Sleep</span><div class="cbar"><i style="width:70%;background:#E07B39"></i></div><span class="csc">7/10</span></div>
+        <div class="cl"><span class="sev mod"></span><span class="cn">Genitourinary</span><div class="cbar"><i style="width:50%;background:#D9A400"></i></div><span class="csc">5/10</span></div>
+        <div class="cl"><span class="sev mod"></span><span class="cn">Mood</span><div class="cbar"><i style="width:50%;background:#D9A400"></i></div><span class="csc">5/10</span></div>
+        <div class="cl"><span class="sev mod"></span><span class="cn">Cognitive</span><div class="cbar"><i style="width:40%;background:#8FA31E"></i></div><span class="csc">4/10</span></div>
+        <div class="cl"><span class="sev good"></span><span class="cn">Musculoskeletal</span><div class="cbar"><i style="width:30%;background:#1A7A3B"></i></div><span class="csc">3/10</span></div>
+        <div class="note">Self-reported 0&ndash;10 bother over the past 7 days. High overall symptom burden.</div>
+      </div>
+    </div>
+
+    <!-- WELLNESS SIGNALS (collapsed, walled off) -->
+    <div class="block">
+      <div class="oneline"><b>MARKABLE wellness self-checks (self-baseline only):</b> facial appearance self-checks (skin tone, redness) and cognitive self-checks (reaction time, memory) are mildly improved compared only to her own previous check. Shown for wellness tracking, not as a treatment effect and not a hormone measurement.</div>
+    </div>
+
+    <div class="repfoot">All values are patient-reported or wellness-derived and reflect the past 7 days, intended to support the clinical conversation. This is not a diagnosis, a hormone measurement, or a treatment recommendation. Clinical decisions remain with the treating clinician.</div>
+  </div>
+
+</div>
+<script>
+function copyRecord(){
+  var txt=
+"MARKABLE pre-visit summary | Maya R. | visit date 06 Jun 2026 | source: patient-reported app data\n"+
+"Pt: Maya R., 45yo, perimenopausal (LMP ~3 mo ago, cycles irregular), uterus intact. Follow-up #3, week 8 of HT.\n"+
+"Regimen (patient-reported): transdermal estradiol 0.05 mg/24h patch twice weekly + micronized progesterone 100 mg nightly (continuous combined), started Apr 13 2026. High self-reported adherence (~2 missed doses in 8 weeks).\n"+
+"HPI: persistent hot flashes (bother 8/10, ~6/day, 2 night awakenings) and worsening sleep onset (7/10) most bothersome; ongoing night sweats; vasomotor changed little over 8 weeks.\n"+
+"Bleeding: unscheduled light spotting since week 3, intermittent, non-postcoital, ongoing ~5 weeks; no heavy bleeding reported.\n"+
+"Genitourinary (patient-reported): vaginal dryness 5/10, entry dyspareunia with avoidance, low desire, urinary urgency + nocturia x2; no local vaginal estrogen in use.\n"+
+"Other side effects: mild breast tenderness (wk 2, easing); bloating resolved; no leg pain/swelling, no aura headache.\n"+
+"Risk flags (patient-reported): no VTE, breast/endometrial cancer, or migraine with aura; non-smoker.\n"+
+"To capture at visit: BP ___, BMI ___, last mammogram (not captured by app).\n"+
+"Patient's agenda: spotting concern; possible dose adjustment for hot flashes; vaginal/urinary symptoms; timeline for sleep.";
+  try{if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt);var b=document.querySelector('.copybtn');if(b){var o=b.innerHTML;b.innerHTML='Copied';setTimeout(function(){b.innerHTML=o;},2000);}}}catch(e){}
+}
+</script>
+</body>
+</html>
