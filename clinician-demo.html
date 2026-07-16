@@ -101,12 +101,46 @@ h1.t{font-size:23px;font-weight:800;color:var(--navy);letter-spacing:-.02em}
 .dtrend .tn{font-size:12.5px;color:#333;font-weight:600}
 .dtrend .tv{font-size:12.5px;font-weight:800}
 
-/* visit summary */
-.vs-card{border:1.5px dashed var(--pk);border-radius:14px;padding:18px 20px;background:#fdf7fb;max-width:760px}
-.vs-card .eh{font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--pk);margin-bottom:10px}
-.vs-card p{font-size:13.5px;color:#3c3c48;line-height:1.65;margin-bottom:10px}
-.vs-card p b{color:var(--navy)}
-.vs-note{font-size:11.5px;color:#999;margin-top:6px}
+/* clinician report: summary-to-copy box + full report card */
+.copybox{background:#f6f7fb;border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-bottom:16px}
+.copybox h3{font-size:14px;font-weight:800;color:var(--pk);margin-bottom:9px}
+.copyline{font-size:13px;color:#3c3c48;line-height:1.6;margin-bottom:4px}
+.copyline b{color:var(--navy)}
+.copybtn{margin-top:12px;float:right;display:inline-flex;align-items:center;gap:7px;background:var(--pk);color:#fff;border:none;border-radius:9px;padding:9px 15px;font-family:var(--font);font-size:12.5px;font-weight:700;cursor:pointer;transition:transform .12s}
+.copybtn:active{transform:scale(.97)}
+.rep{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px 20px}
+.rep-hd{display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid var(--pk);padding-bottom:10px;margin-bottom:12px}
+.rep-hd .lg{display:flex;align-items:center;gap:12px}
+.rep-hd .lg img{height:16px}
+.rep-hd .ti{font-size:15px;font-weight:800;color:var(--navy)}
+.rep-hd .dt{font-size:12px;color:var(--muted)}
+.rep-pt{display:flex;align-items:center;gap:16px;flex-wrap:wrap;padding-bottom:12px;border-bottom:1px solid var(--line);margin-bottom:14px}
+.rep-pt .nm{font-size:15px;font-weight:800;color:var(--navy)}
+.rep-pt .mi{font-size:12.5px;color:var(--muted)}
+.rep-pt .adh{margin-left:auto;font-size:12.5px;font-weight:800;color:var(--green)}
+.rep-h{font-size:12px;font-weight:800;color:var(--pk);margin:0 0 9px}
+.bothers{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:18px}
+.bcard{border-radius:11px;padding:12px;text-align:center}
+.bcard .bn{font-size:12.5px;font-weight:700;color:var(--navy)}
+.bcard .bv{font-size:22px;font-weight:800;margin:2px 0}
+.bcard .bt{font-size:10.5px;color:var(--muted)}
+.repcols{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-bottom:16px}
+.cl{display:flex;align-items:center;gap:10px;padding:5px 0}
+.cl .cn{font-size:12.5px;color:#333;font-weight:600;width:110px;flex:none}
+.cl .csc{font-size:12px;font-weight:800;color:#555;width:16px;text-align:right;flex:none}
+.cl .cbar{flex:1;height:7px;border-radius:4px;background:#eee;overflow:hidden}
+.cl .cbar i{display:block;height:100%;border-radius:4px}
+.clnote{font-size:10.5px;color:#a7a7b0;margin-top:9px;line-height:1.45}
+.fnd{display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:1px solid #f4f4f7}
+.fnd:last-child{border-bottom:none}
+.fnd .fn{font-size:12.5px;color:#333;font-weight:600}
+.fnd .fv{font-size:12.5px;font-weight:800}
+.adhbar{display:flex;align-items:center;gap:12px}
+.adhbar .lb{font-size:12.5px;font-weight:800;color:var(--navy);width:44px;flex:none}
+.adhbar .track{flex:1;height:16px;border-radius:8px;background:#eef0f4;overflow:hidden}
+.adhbar .track i{display:flex;align-items:center;justify-content:center;height:100%;background:var(--green);border-radius:8px;color:#fff;font-size:10px;font-weight:800}
+.adhbar .dd{font-size:11px;color:var(--muted);flex:none}
+.repfoot{font-size:10.5px;color:#a7a7b0;text-align:center;margin-top:14px;padding-top:11px;border-top:1px solid var(--line)}
 
 /* confirmation */
 .done{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:60px 30px}
@@ -194,65 +228,62 @@ h1.t{font-size:23px;font-weight:800;color:var(--navy);letter-spacing:-.02em}
           </div>
         </div>
 
-        <!-- SCREEN 1: DASHBOARD -->
+        <!-- SCREEN 1: CLINICIAN REPORT (summary-to-copy at top, full report below) -->
         <div class="scr" data-i="1">
           <div class="crumb" onclick="go(0)"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg> Today's visits</div>
-          <div class="dash">
-            <div class="dash-top">
-              <div class="dt-l"><img src="assets/markable-logo.png" alt="MARKABLE"><span>Intake &amp; Tracking Profile</span></div>
-              <div class="dt-r"><div class="pn">Maya R. <span style="font-weight:500;color:#888">&middot; Age 45</span></div><div class="pv">Visit 3 &middot; prepared Jun 6, 2026</div></div>
-            </div>
-            <div class="dash-band">
-              <div><div class="lbl">Current therapy (patient-reported)</div><div class="v">Transdermal estradiol 0.05 mg/day &middot; Micronized progesterone 200 mg</div><div class="s">Started Apr 13, 2026 &middot; Adherence: 2 missed doses this cycle</div></div>
-              <div style="text-align:right"><div class="lbl">Supplements</div><div class="v">Magnesium glycinate</div><div class="s">Started Jan 10</div></div>
-            </div>
-            <div class="dash-cols">
-              <div>
-                <div class="dsec">Symptom landscape</div>
-                <div class="dcall">Highest current symptom: Hot flashes (8/10)</div>
-                <div class="drow"><span class="dn">Hot flashes</span><span class="rt"><span class="dbar"><i style="width:80%"></i></span><span class="dsc">8/10</span></span></div>
-                <div class="drow"><span class="dn">Night sweats</span><span class="rt"><span class="dbar"><i style="width:70%"></i></span><span class="dsc">7/10</span></span></div>
-                <div class="drow"><span class="dn">Sleep onset difficulty</span><span class="rt"><span class="dbar"><i style="width:70%"></i></span><span class="dsc">7/10</span></span></div>
-                <div class="drow"><span class="dn">Brain fog</span><span class="rt"><span class="dbar"><i style="width:60%"></i></span><span class="dsc">6/10</span></span></div>
-                <div class="drow"><span class="dn">Stress sensitivity</span><span class="rt"><span class="dbar"><i style="width:60%"></i></span><span class="dsc">6/10</span></span></div>
-                <div class="dsub">Visit focus (patient-flagged)</div>
-                <div class="dchips"><span class="dchip">Hot flashes</span><span class="dchip">Night sweats</span><span class="dchip">Sleep worsening</span></div>
-              </div>
-              <div>
-                <div class="dsec">Changes since last visit</div>
-                <div class="dsub">Cognitive performance</div>
-                <div class="dtrend"><span class="tn">Reaction time</span><span class="tv" style="color:#1A7A3B">Improved 0.18s</span></div>
-                <div class="dtrend"><span class="tn">Short-term recall</span><span class="tv" style="color:#1A7A3B">Improved 11%</span></div>
-                <div class="dtrend"><span class="tn">Digit recall</span><span class="tv" style="color:#666">Stable</span></div>
-                <div class="dsub">Physiological signals (visual)</div>
-                <div class="dtrend"><span class="tn">Skin hydration signals</span><span class="tv" style="color:#1A7A3B">Improved 14%</span></div>
-                <div class="dtrend"><span class="tn">Periorbital fine lines</span><span class="tv" style="color:#1A7A3B">Decreased 8%</span></div>
-                <div class="dtrend"><span class="tn">Facial redness</span><span class="tv" style="color:#1A7A3B">Decreased 11%</span></div>
-              </div>
-            </div>
+
+          <div class="copybox">
+            <h3>Summary to copy to the medical record</h3>
+            <div class="copyline"><b>CC / HPI:</b> Follow-up visit #3. Patient reports persistent hot flashes (8/10), worsening sleep onset (7/10), and ongoing night sweats (7/10).</div>
+            <div class="copyline"><b>Current medications (patient-reported):</b> Transdermal estradiol 0.05 mg/day + micronized progesterone 200 mg. Adherence 96%.</div>
+            <div class="copyline"><b>MARKABLE tracking:</b> High symptom burden, predominantly in the vasomotor and sleep clusters. Digital follow-up signals show mild improvement in reaction time and verbal memory since the last visit.</div>
+            <button class="copybtn" onclick="copyRecord()"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 012-2h8"/></svg> Copy to clipboard</button>
+            <div style="clear:both"></div>
           </div>
-          <div class="foot"><button class="btn btn-pk" onclick="go(2)">Prepare visit summary</button><button class="btn btn-ghost" onclick="go(0)">Back to today's visits</button></div>
+
+          <div class="rep">
+            <div class="rep-hd"><div class="lg"><img src="assets/markable-logo.png" alt="MARKABLE"><span class="ti">Intake and Follow-up Report</span></div><span class="dt">Jun 6, 2026</span></div>
+            <div class="rep-pt"><span class="nm">Maya R.</span><span class="mi">Age 45</span><span class="mi">Visit 3</span><span class="mi">Estradiol 0.05 mg + Progesterone 200 mg</span><span class="adh">Adherence 96%</span></div>
+
+            <div class="rep-h">Top concerns right now (patient-reported)</div>
+            <div class="bothers">
+              <div class="bcard" style="background:#fdeef5"><div class="bn">Hot flashes</div><div class="bv" style="color:#C0392B">8/10</div><div class="bt">Persistent</div></div>
+              <div class="bcard" style="background:#fdf2e8"><div class="bn">Sleep onset</div><div class="bv" style="color:#C0392B">7/10</div><div class="bt">&uarr; Worsening</div></div>
+              <div class="bcard" style="background:#fff6e6"><div class="bn">Night sweats</div><div class="bv" style="color:#B8860B">7/10</div><div class="bt">Persistent</div></div>
+            </div>
+
+            <div class="repcols">
+              <div>
+                <div class="rep-h">Symptom burden by cluster</div>
+                <div class="cl"><span class="cn">Vasomotor</span><div class="cbar"><i style="width:80%;background:#C0392B"></i></div><span class="csc">8</span></div>
+                <div class="cl"><span class="cn">Sleep</span><div class="cbar"><i style="width:70%;background:#E07B39"></i></div><span class="csc">7</span></div>
+                <div class="cl"><span class="cn">Mood</span><div class="cbar"><i style="width:50%;background:#D9A400"></i></div><span class="csc">5</span></div>
+                <div class="cl"><span class="cn">Urogenital</span><div class="cbar"><i style="width:40%;background:#C9A227"></i></div><span class="csc">4</span></div>
+                <div class="cl"><span class="cn">Cognitive</span><div class="cbar"><i style="width:40%;background:#8FA31E"></i></div><span class="csc">4</span></div>
+                <div class="cl"><span class="cn">Musculoskeletal</span><div class="cbar"><i style="width:30%;background:#1A7A3B"></i></div><span class="csc">3</span></div>
+                <div class="clnote">Cluster scores 0&ndash;10, patient-reported. Corresponds to a Menopause Rating Scale total of 20/44 (severe band on the MRS).</div>
+              </div>
+              <div>
+                <div class="rep-h">Additional MARKABLE signals</div>
+                <div class="fnd"><span class="fn">Reaction time</span><span class="fv" style="color:#1A7A3B">Mild improvement</span></div>
+                <div class="fnd"><span class="fn">Verbal memory</span><span class="fv" style="color:#1A7A3B">Improved</span></div>
+                <div class="fnd"><span class="fn">Sustained attention</span><span class="fv" style="color:#666">Stable</span></div>
+                <div class="fnd"><span class="fn">Hormonal Imprint (facial signals)</span><span class="fv" style="color:#1A7A3B">Improving</span></div>
+                <div class="clnote">Wellness signals from the mapping, for awareness and tracking. Not a hormone measurement.</div>
+              </div>
+            </div>
+
+            <div class="rep-h">Adherence (patient-reported)</div>
+            <div class="adhbar"><span class="lb">96%</span><div class="track"><i style="width:96%">96%</i></div><span class="dd">52 / 54 doses</span></div>
+
+            <div class="repfoot">This information is intended to support clinical discussion and does not constitute a diagnosis or treatment recommendation.</div>
+          </div>
+
+          <div class="foot"><button class="btn btn-pk" onclick="copyRecord()">Copy to the medical record</button><button class="btn btn-ghost" onclick="go(0)">Back to today's visits</button></div>
         </div>
 
-        <!-- SCREEN 2: VISIT SUMMARY -->
+        <!-- SCREEN 2: CONFIRMATION -->
         <div class="scr" data-i="2">
-          <div class="crumb" onclick="go(1)"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg> Maya R. profile</div>
-          <div class="eyebrow">Structured visit summary</div>
-          <h1 class="t">Review, then copy to the record.</h1>
-          <p class="sub" style="margin:6px 0 16px">MARKABLE drafts the summary from her profile. You review and edit it, then copy it into your own medical record. No integration required, and the clinical note stays yours.</p>
-          <div class="vs-card">
-            <div class="eh">Draft summary &middot; Maya R. &middot; Visit 3</div>
-            <p><b>Current therapy:</b> Transdermal estradiol 0.05 mg/day plus micronized progesterone 200 mg, started Apr 13. Adherence: 2 missed doses this cycle.</p>
-            <p><b>Reported symptoms:</b> Persistent hot flashes (8/10), night sweats, and worsening sleep onset.</p>
-            <p><b>Measured signals (MARKABLE):</b> Cognitive, reaction time improved 0.18s and short-term recall up 11 percent since last visit. Visual signals, skin hydration up 14 percent, periorbital fine lines down 8 percent, facial redness down 11 percent.</p>
-            <p><b>For discussion:</b> Mixed picture. Cognitive and dermal signals improving, vasomotor and sleep clusters still burdened. Adherence support and a dose conversation may be worth raising.</p>
-            <div class="vs-note">This is a wellness summary for visit preparation, not a diagnosis or a treatment recommendation. You review it, then copy it into the record.</div>
-          </div>
-          <div class="foot"><button class="btn btn-pk" onclick="go(3)">Copy for the medical record</button><button class="btn btn-ghost" onclick="go(1)">Back to profile</button></div>
-        </div>
-
-        <!-- SCREEN 3: CONFIRMATION -->
-        <div class="scr" data-i="3">
           <div class="done">
             <div class="ic"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#1A7A3B" stroke-width="2"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg></div>
             <h1 class="t">Copied for the record.</h1>
@@ -275,8 +306,13 @@ h1.t{font-size:23px;font-weight:800;color:var(--navy);letter-spacing:-.02em}
 </div>
 
 <script>
-var SCREENS=[{l:"Today's visits"},{l:"Patient profile"},{l:"Visit summary"},{l:"Added to chart"}];
+var SCREENS=[{l:"Today's visits"},{l:"Patient report"},{l:"Copied to chart"}];
 var cur=0;
+function copyRecord(){
+  var txt="CC / HPI: Follow-up visit #3. Patient reports persistent hot flashes (8/10), worsening sleep onset (7/10), and ongoing night sweats (7/10).\nCurrent medications (patient-reported): Transdermal estradiol 0.05 mg/day + micronized progesterone 200 mg. Adherence 96%.\nMARKABLE tracking: High symptom burden, predominantly in the vasomotor and sleep clusters. Digital follow-up signals show mild improvement in reaction time and verbal memory since the last visit.";
+  try{if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(txt);}catch(e){}
+  go(2);
+}
 function go(n){
   if(n<0||n>=SCREENS.length)return;
   var all=document.querySelectorAll('.scr');
